@@ -1,0 +1,10 @@
+.daily-challenge {
+    width: 700px;
+
+    &-content {
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
