@@ -1,0 +1,21 @@
+.category-card {
+    width: 300px;
+    height: 220px;
+
+    .cat-title {
+        margin: 16px 0 36px 0;
+    }
+
+    .progress {
+        display: flex;
+    }
+
+    .percent-completed {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .num-challenges {
+        font-size: 14px;
+    }
+}
