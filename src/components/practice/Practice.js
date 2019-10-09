@@ -2,26 +2,22 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Navbar from "../navbar/Navbar";
 
-import "./Dashboard.scss";
+import "./Practice.scss";
 
-// Dashboard Container
-export default class Dashboard extends React.Component {
+// Practice Tab Container
+export default class Practice extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      user: {},
-      pets: [],
-      listings: []
-    };
+    this.state = {};
   }
 
   render() {
     return (
-      <div className={"dashboard"}>
-        <Navbar activeTab={"dashboard"} />
+      <div className={"practice"}>
+        <Navbar activeTab={"practice"} />
         <Grid container direction={"column"} className={"content"} spacing={6}>
           <Grid item>
-            <h1>Dashboard</h1>
+            <h1>Practice</h1>
           </Grid>
         </Grid>
       </div>
