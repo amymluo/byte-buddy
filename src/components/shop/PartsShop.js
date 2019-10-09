@@ -2,10 +2,10 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Navbar from "../navbar/Navbar";
 
-import "./Dashboard.scss";
+import "./PartsShop.scss";
 
-// Dashboard Container
-export default class Dashboard extends React.Component {
+// Parts Shop Container
+export default class PartsShop extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,11 +17,11 @@ export default class Dashboard extends React.Component {
 
   render() {
     return (
-      <div className={"dashboard"}>
-        <Navbar activeTab={"dashboard"} />
+      <div className={"parts-shop"}>
+        <Navbar activeTab={"shop"} />
         <Grid container direction={"column"} className={"content"} spacing={6}>
           <Grid item>
-            <h1>Dashboard</h1>
+            <h1>Parts Shop</h1>
           </Grid>
         </Grid>
       </div>
