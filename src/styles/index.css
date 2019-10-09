@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 30px;
+  color: black;
+  font-weight: 500;
+  margin: 0;
+}
+
+h2 {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 24px;
+  color: black;
+  font-weight: 500;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.content {
+  padding: 48px 60px;
+}
