@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
+import Points from "./Points";
 
 export default class Navbar extends React.Component {
   render() {
@@ -58,6 +59,10 @@ export default class Navbar extends React.Component {
           direction={"row"}
           spacing={2}
         >
+          <Grid item>
+            {/* Todo: replace with dynamic val */}
+            <Points points={35} />
+          </Grid>
           <Grid item>
             <div className="avatar" />
           </Grid>
