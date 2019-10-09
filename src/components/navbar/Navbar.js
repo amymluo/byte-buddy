@@ -1,6 +1,5 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
 
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
@@ -38,20 +37,33 @@ export default class Navbar extends React.Component {
           </Grid>
           <Grid
             item
-            className={this.props.activeTab === "listings" ? "active" : null}
+            className={this.props.activeTab === "practice" ? "active" : null}
           >
-            <Link to="/dashboard">PRACTICE</Link>
+            <Link to="/practice">PRACTICE</Link>
           </Grid>
           <Grid
             item
-            className={this.props.activeTab === "sitters" ? "active" : null}
+            className={this.props.activeTab === "shop" ? "active" : null}
           >
-            <Link to="/dashboard">PARTS SHOP</Link>
+            <Link to="/shop">PARTS SHOP</Link>
           </Grid>
         </Grid>
         {/* User Profile */}
-        <Grid item className={"profile"}>
-          <span>Amy Luo</span>
+        <Grid
+          className={"profile"}
+          container
+          item
+          justify={"flex-end"}
+          alignItems={"center"}
+          direction={"row"}
+          spacing={2}
+        >
+          <Grid item>
+            <div className="avatar" />
+          </Grid>
+          <Grid item>
+            <span>Amy Luo</span>
+          </Grid>
         </Grid>
       </Grid>
     );
