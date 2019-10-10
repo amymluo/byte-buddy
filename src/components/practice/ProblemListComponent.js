@@ -11,10 +11,16 @@ const useStyles = makeStyles(theme => ({
   paper: {
     padding: theme.spacing(1),
     textAlign: 'left',
-    color: theme.palette.text.secondary,
+    color: 'black',
   },
   align: {
     alignItems: 'center'
+  },
+  iconHolder: {
+    display: 'flex'
+  },
+  alignSelf: {
+    alignSelf: 'center'
   }
 }));
 
@@ -27,13 +33,16 @@ export default function ProblemListComponent(props) {
     <div className={classes.root}>
       <Grid container spacing={1} className={classes.align}>
         <Grid item xs={12} sm={6}>
-          <p className={classes.paper}>{props.name}</p>
+          <p className={classes.paper} color={'black'}>{props.name}</p>
         </Grid>
         <Grid item xs={12} sm={1}>
           <p className={classes.paper}>{props.difficulty}</p>
         </Grid>
         <Grid item xs={12} sm={2}>
-          <p className={classes.paper}>{props.points}</p>
+        <div className={classes.iconHolder}>
+          <img className={classes.alignSelf} src="assets/purple_hex.png" alt="points" width={20} />
+          <p className={classes.paper} color={'black'}>{props.points}</p>
+        </div>
         </Grid>
         <Grid item xs={12} sm={3}>
           <Button variant={solveButton} color="primary" className={classes.button}>

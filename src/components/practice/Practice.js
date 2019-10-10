@@ -1,9 +1,8 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
 import Navbar from "../navbar/Navbar";
-
 import PracticeList from './PracticeList'
+
 
 import "./Practice.scss";
 
@@ -14,25 +13,22 @@ const practice = [
 
 ]
 
-// Practice Container
+// Practice Tab Container
 export default class Practice extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      user: {},
-      pets: [],
-      listings: []
-    };
+    this.state = {};
   }
 
-
   render() {
-
     return (
-      <div className={"dashboard"}>
+      <div className={"practice"}>
         <Navbar activeTab={"practice"} />
         <Grid container direction={"column"} className={"content"} spacing={6}>
-          <PracticeList problems={practice}/>
+          <Grid item>
+            <h1>Practice</h1>
+            <PracticeList problems={practice}/>
+          </Grid>
         </Grid>
       </div>
     );
