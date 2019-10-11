@@ -8,7 +8,7 @@ import { borderColor } from '@material-ui/system';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    border: "1px solid #c3c3c3"
+    padding: "10px"
   },
   paper: {
     padding: theme.spacing(1),
@@ -16,7 +16,8 @@ const useStyles = makeStyles(theme => ({
     color: 'black',
   },
   align: {
-    alignItems: 'center'
+    alignItems: 'center',
+    border: "1px solid #c3c3c3",
   },
   iconHolder: {
     display: 'flex'
