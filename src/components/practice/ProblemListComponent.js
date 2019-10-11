@@ -2,11 +2,13 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
+import { borderColor } from '@material-ui/system';
 
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+    border: "1px solid #c3c3c3"
   },
   paper: {
     padding: theme.spacing(1),
@@ -21,6 +23,15 @@ const useStyles = makeStyles(theme => ({
   },
   alignSelf: {
     alignSelf: 'center'
+  },
+  buttonSolved: {
+    backgroundColor: "white",
+    color: "#ff663e",
+    borderColor: "#ff663e"
+  },
+  buttonUnsolved: {
+    backgroundColor: "#ff663e",
+    color: "white"
   }
 }));
 
@@ -28,15 +39,22 @@ export default function ProblemListComponent(props) {
   const classes = useStyles();
 
   const solveButton = props.isSolved ? "outlined" : "contained";
+  const solveButtonClass = props.isSolved ? classes.buttonSolved : classes.buttonUnsolved;
+
+  const isShown = props.isShown;
+  
 
   return (
+
+
     <div className={classes.root}>
+        { isShown &&
       <Grid container spacing={1} className={classes.align}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={5}>
           <p className={classes.paper} color={'black'}>{props.name}</p>
         </Grid>
-        <Grid item xs={12} sm={1}>
-          <p className={classes.paper}>{props.difficulty}</p>
+        <Grid item xs={12} sm={3}>
+          <p className={classes.paper} style={{color: 'grey'}}>{props.difficulty}</p>
         </Grid>
         <Grid item xs={12} sm={2}>
         <div className={classes.iconHolder}>
@@ -44,12 +62,14 @@ export default function ProblemListComponent(props) {
           <p className={classes.paper} color={'black'}>{props.points}</p>
         </div>
         </Grid>
-        <Grid item xs={12} sm={3}>
-          <Button variant={solveButton} color="primary" className={classes.button}>
+        <Grid item xs={12} sm={2}>
+          <Button variant={solveButton} color="primary" className={solveButtonClass}>
             SOLVE
           </Button>
         </Grid>
       </Grid>
+        }
     </div>
+
   );
 }
