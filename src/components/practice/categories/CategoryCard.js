@@ -1,20 +1,13 @@
 import React from "react";
 
 import "./CategoryCard.scss";
-import {
-  Card,
-  IconButton,
-  CardContent,
-  Button,
-  LinearProgress,
-  Fab
-} from "@material-ui/core";
+import { Card, CardContent, LinearProgress, Fab } from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 export default class CategoryCard extends React.Component {
   state = {
     title: "Algorithms",
-    numCompleted: 5,
+    numCompleted: 12,
     numChallenges: 50
   };
 

@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import Navbar from "../navbar/Navbar";
 import DailyChallenge from "./daily/DailyChallenge";
 import CategoryCard from "../practice/categories/CategoryCard";
+import Buddy from "../buddy/Buddy";
 
 import "./Dashboard.scss";
 
@@ -17,22 +18,29 @@ export default class Dashboard extends React.Component {
     return (
       <div className={"dashboard"}>
         <Navbar activeTab={"dashboard"} />
-        <Grid container direction={"row"} className={"content"} spacing={6}>
+        <Grid
+          container
+          direction={"row"}
+          className={"content"}
+          spacing={6}
+          justify={"space-between"}
+        >
           <Grid
             container
             item
             className="dashboard-problems"
-            md={7}
-            spacing={3}
-            direction="column"
+            sm={7}
+            direction="row"
           >
-            <Grid item>
+            <Grid item xs={12}>
               <DailyChallenge />
             </Grid>
-            <Grid item>
-              <h2 style={{ marginTop: "24px" }}>CONTINUE PRACTICE</h2>
+            <Grid item xs={12}>
+              <h2 style={{ marginTop: "36px", marginBottom: "24px" }}>
+                CONTINUE PRACTICE
+              </h2>
             </Grid>
-            <Grid container item spacing={5} direction="row">
+            <Grid container item spacing={3} direction="row" xs={12}>
               <Grid item>
                 <CategoryCard />
               </Grid>
@@ -47,9 +55,10 @@ export default class Dashboard extends React.Component {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item md={5}>
+          <Grid item sm={5}>
             {/* Todo: Replace with buddy component */}
-            <img src="/assets/buddy.png" alt="Byte Buddy" width="100%" />
+            {/* <img src="/assets/buddy.png" alt="Byte Buddy" width="100%" /> */}
+            <Buddy />
           </Grid>
         </Grid>
       </div>
