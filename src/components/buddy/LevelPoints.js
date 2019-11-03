@@ -16,7 +16,7 @@ export default class LevelPoints extends React.Component {
   render() {
     const { points, level } = this.props;
     return (
-      <div className="level-points" style={{ width: "200px", padding: "8px" }}>
+      <div className="level-points" style={{ width: "200px" }}>
         <Grid container direction="column">
           <Grid item container xs={12} justify="space-between">
             <Grid item>
