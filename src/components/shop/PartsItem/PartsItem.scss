@@ -1,0 +1,15 @@
+.shop-item, .shop-item-dialog {
+    .item-mainimg {
+        width: 100px;
+    }
+    .item-price {
+        display: flex;
+        img {
+            width: 20px;
+        }
+        p {
+            line-height: 20px;
+            padding-left: 10px;
+        }
+    }
+}

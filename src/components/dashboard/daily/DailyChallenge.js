@@ -1,5 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import stamp from "./img/stamp.png";
+import unfilledStamp from "./img/stamp_empty.png";
+import completeStamp from "./img/stamp_complete.gif";
 import clsx from "clsx";
 
 import "./DailyChallenge.scss";
@@ -11,7 +14,8 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
-  Button
+  Button,
+  Modal
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
@@ -31,6 +35,8 @@ export default function DailyChallenge() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [value, setValue] = React.useState("1");
+  const [modalOpened, setModalState] = React.useState(false);
+  const [userHasCompleted, setCompleted] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -40,15 +46,32 @@ export default function DailyChallenge() {
     setValue(event.target.value);
   };
 
+  const handleUserCompletion = () => {
+    setCompleted(true);
+  };
+
+  const handleModalState = () => {
+    /* TODO: prevent user from submitting again after refreshing/reentering the page */
+    setModalState(!modalOpened);
+    handleUserCompletion();
+  };
+
+  const isCorrectAnswer = () => {
+    // console.log(value);
+    // return false;
+    return value === "2";
+  };
   return (
     <Card className={"daily-challenge"} width="450px">
-      <CardContent className={"daily-challenge-content"}>
+      <CardContent
+        className={"daily-challenge-content"}
+        onClick={handleExpandClick}
+      >
         <h1>Daily Challenge!</h1>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded
           })}
-          onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
         >
@@ -65,7 +88,7 @@ export default function DailyChallenge() {
             terminal private headers packet sniffer. James T. Kirk mailbomb perl
             malloc Linus Torvalds default gobble.
           </div>
-          <div className="multiple-choice">
+          <div className={`multiple-choice ${userHasCompleted ? 'mc--completed' : '' }`}>
             <RadioGroup
               aria-label="gender"
               name="gender1"
@@ -73,30 +96,76 @@ export default function DailyChallenge() {
               onChange={handleChange}
             >
               <FormControlLabel
+              disabled={userHasCompleted}
                 value="1"
                 control={<Radio />}
                 label="Answer 1"
               />
               <FormControlLabel
+              disabled={userHasCompleted}
                 value="2"
                 control={<Radio />}
                 label="Answer 2"
               />
               <FormControlLabel
+              disabled={userHasCompleted}
                 value="3"
                 control={<Radio />}
                 label="Answer 3"
               />
               <FormControlLabel
+              disabled={userHasCompleted}
                 value="4"
                 control={<Radio />}
                 label="Answer 4"
               />
             </RadioGroup>
-            <Button variant="contained" color="secondary">
-              Submit
+            </div>
+
+            <Button
+              disabled={userHasCompleted}
+              variant="contained"
+              color="secondary"
+              onClick={handleModalState}
+            >
+              {userHasCompleted ? "Challenge Completed" : "Submit" }
             </Button>
-          </div>
+
+            <Modal
+              aria-labelledby="simple-modal-title"
+              aria-describedby="simple-modal-description"
+              open={modalOpened}
+              onClose={handleModalState}
+            >
+              <div className="popup">
+                <h2 id="simple-modal-title">
+                  {isCorrectAnswer()
+                    ? "Great work!"
+                    : "Good try, but not quite..."}
+                </h2>
+                <p id="simple-modal-description">
+                  {/* Pull an explanation of answer here */}
+                  Duis mollis, est non commodo luctus, nisi erat porttitor
+                  ligula.
+                </p>
+                <div className="popup_stamps">
+                  <img src={stamp} />
+                  <img src={stamp} />
+                  <img src={stamp} />
+                  <img src={completeStamp} />
+                  <img src={unfilledStamp} />
+                  <img src={unfilledStamp} />
+                </div>
+
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={handleModalState}
+                >
+                  Close
+                </Button>
+              </div>
+            </Modal>
         </CardContent>
       </Collapse>
     </Card>
