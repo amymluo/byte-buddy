@@ -6,6 +6,9 @@ import FilterBox from './FilterBox';
 import TextField from '@material-ui/core/TextField';
 import Search from '@material-ui/icons/Search';
 
+import { PROBLEM_INFO } from "../../constants/problems";
+
+
 
 import "./Practice.scss";
 
@@ -16,6 +19,13 @@ const difficulty = ['Easy', 'Medium', 'Hard']
 const difficultyTitile = "Difficulty";
 const topics = ['Array', 'String', 'HashTable']
 const topicsTitle = "Topics";
+
+const getUrlParameter = (name) => {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    let regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    let results = regex.exec(window.location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
 
 
 function InputWithIcon() {
@@ -38,13 +48,11 @@ export default class Practice extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      questions: [
-        {id: 1, name: "Time Conversion", difficulty: "Easy", points: 5, isSolved: false, isShown: true},
-        {id: 2, name: "Reverse Integer", difficulty: "Medium", points: 5, isSolved: true, isShown: true},
-        {id: 3, name: "Forming a Magic Square", difficulty: "Easy", points: 7, isSolved: false, isShown: true},
-        {id: 4, name: "Simple Array Sum", difficulty: "Hard", points: 10, isSolved: true, isShown: true},
-      ],
+      category: getUrlParameter("category"),
+      questions: PROBLEM_INFO,
     };
+
+    console.log(this.state.category);
   }
 
   myCallback = (dataFromChild) => {
@@ -110,6 +118,7 @@ export default class Practice extends React.Component {
 
   render() {
     const input = InputWithIcon();
+    const { category } = this.state;
     return (
       <div className={"practice"}>
         <Navbar activeTab={"practice"} />
@@ -117,7 +126,7 @@ export default class Practice extends React.Component {
         <Grid container direction={"row"} className={"content"} spacing={6}>
           <Grid item md={8} lg={8}> 
             <Grid container direction={"row"} alignItems="center" >
-              <h3 style={{marginRight: "50px"}}>Algorithms</h3>
+              <h3 style={{marginRight: "50px"}}>{category}</h3>
               {input}
             </Grid>
             <PracticeList problems={this.state.questions}/>

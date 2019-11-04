@@ -89,13 +89,11 @@ export default class PracticeProblem extends React.Component {
           <Tab label="Problem" />
           <Tab label="Hints" />
           <Tab label="Solution" />
-          <Tab label="Discussion" />
         </Tabs>
     </Paper>
           <TabPanel value={value} index={0} view={problemTabView}/>
             <TabPanel value={value} index={1} view={hintTabView}/>
             <TabPanel value={value} index={2}/>
-            <TabPanel value={value} index={3}/>
 
         
         </Grid>

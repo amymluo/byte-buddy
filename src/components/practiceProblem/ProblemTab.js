@@ -45,7 +45,7 @@ export default class ProblemTab extends React.Component {
             <Button variant="contained">
             Submit
             </Button>
-            <Button>Default</Button>
+            <Button>Run Code</Button>
 
         </div>
       </div>

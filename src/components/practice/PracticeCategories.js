@@ -40,7 +40,8 @@ export default class Practice extends React.Component {
         <Grid container direction={"row"} className={"content"} spacing={6}>
           <Grid item md={8} lg={8}> 
             <Grid container direction={"row"} alignItems="center" >
-                          { input }
+            <h1>Popular Topics</h1>
+        
               <Grid container item spacing={3} direction="row" xs={12}>
                 <Grid item>
                   <CategoryCard />

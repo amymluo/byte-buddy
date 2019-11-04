@@ -51,7 +51,6 @@ export default function ProblemListComponent(props) {
               color="primary"
               className={solveButtonClass}
               onClick={() => {
-        console.log('Button is cliked!');
         window.location.href = "/problem?problem=" + props.id ;
     }}
             >
