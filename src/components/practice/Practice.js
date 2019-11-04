@@ -53,14 +53,17 @@ export default class Practice extends React.Component {
 
   filterQuestions(data) {
     const q = this.state.questions;
+    let allIsNotShown = true;
     if (data.title === isSolvedTitle) {
       q.forEach(function(e) {
         e.isShown = false;
         if (data.val["Solved"] && e.isSolved) {
           e.isShown = true;
+          allIsNotShown = false;
         }
         if (data.val["Unsolved"] && !e.isSolved) {
           e.isShown = true;
+          allIsNotShown = false;
         }
         // if (!data.val["Solved"] && !data.val["Unsolved"]) {
         //   e.isShown = true;
@@ -75,12 +78,15 @@ export default class Practice extends React.Component {
         if (data.val["Easy"] && e.difficulty == 'Easy') {
           console.log("here" + e.isSolved + e.name)
           e.isShown = true;
+          allIsNotShown = false;
         }
         if (data.val["Medium"] && e.difficulty == 'Medium') {
           e.isShown = true;
+          allIsNotShown = false;
         }
         if (data.val["Hard"] && e.difficulty == 'Hard') {
           e.isShown = true;
+          allIsNotShown = false;
         }
         // if (!data.val["Easy"] && !data.val["Medium"] && !data.val["Hard"]) {
         //   e.isShown = true;
@@ -88,9 +94,12 @@ export default class Practice extends React.Component {
       });
     }
 
-    else {
-
+    if (allIsNotShown) {
+      q.forEach(function(e) {
+        e.isShown = true;
+      });
     }
+
 
     this.setState({questions: q});
 
