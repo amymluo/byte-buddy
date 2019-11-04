@@ -4,73 +4,66 @@ import Grid from "@material-ui/core/Grid";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
 import Points from "./Points";
+import { userInfo } from "../../data/user";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
-export default class Navbar extends React.Component {
-  render() {
-    return (
+export default function Navbar(props) {
+  return (
+    <Grid
+      className={"navbar"}
+      container
+      justify={"space-between"}
+      alignItems={"center"}
+    >
       <Grid
-        className={"navbar"}
+        className={"left"}
         container
-        justify={"space-between"}
+        item
+        justify={"flex-start"}
         alignItems={"center"}
+        direction={"row"}
+        xs={8}
+        spacing={10}
       >
-        <Grid
-          className={"left"}
-          container
-          item
-          justify={"flex-start"}
-          alignItems={"center"}
-          direction={"row"}
-          xs={8}
-          spacing={10}
-        >
-          {/* Logo */}
-          <Grid item>
-            <Link to="/dashboard">
-              <img src={"/assets/bb_logo.png"} alt={"logo"} width={180} />
-            </Link>
-          </Grid>
-          <Grid
-            item
-            className={this.props.activeTab === "dashboard" ? "active" : null}
-          >
-            <Link to="/dashboard">DASHBOARD</Link>
-          </Grid>
-          <Grid
-            item
-            className={this.props.activeTab === "practice" ? "active" : null}
-          >
-            <Link to="/practice">PRACTICE</Link>
-          </Grid>
-          <Grid
-            item
-            className={this.props.activeTab === "shop" ? "active" : null}
-          >
-            <Link to="/shop">PARTS SHOP</Link>
-          </Grid>
+        {/* Logo */}
+        <Grid item>
+          <Link to="/dashboard">
+            <img src={"/assets/bb_logo.png"} alt={"logo"} width={180} />
+          </Link>
         </Grid>
-        {/* User Profile */}
         <Grid
-          className={"profile"}
-          container
           item
-          justify={"flex-end"}
-          alignItems={"center"}
-          direction={"row"}
-          spacing={2}
+          className={props.activeTab === "dashboard" ? "active" : null}
         >
-          <Grid item>
-            {/* Todo: replace with dynamic val */}
-            <Points points={35} />
-          </Grid>
-          <Grid item>
-            <div className="avatar" />
-          </Grid>
-          <Grid item>
-            <span>Amy Luo</span>
-          </Grid>
+          <Link to="/dashboard">DASHBOARD</Link>
+        </Grid>
+        <Grid item className={props.activeTab === "practice" ? "active" : null}>
+          <Link to="/practice">PRACTICE</Link>
+        </Grid>
+        <Grid item className={props.activeTab === "shop" ? "active" : null}>
+          <Link to="/shop">PARTS SHOP</Link>
         </Grid>
       </Grid>
-    );
-  }
+      {/* User Profile */}
+      <Grid
+        className={"profile"}
+        container
+        item
+        justify={"flex-end"}
+        alignItems={"center"}
+        direction={"row"}
+        spacing={2}
+      >
+        <Grid item>
+          <Points points={userInfo.points} />
+        </Grid>
+        <Grid item style={{ paddingRight: "0" }}>
+          <AccountCircleIcon fontSize="large" />
+        </Grid>
+        <Grid item>
+          <span>{userInfo.name}</span>
+        </Grid>
+      </Grid>
+    </Grid>
+  );
 }

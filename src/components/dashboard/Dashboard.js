@@ -3,65 +3,70 @@ import Grid from "@material-ui/core/Grid";
 import Navbar from "../navbar/Navbar";
 import DailyChallenge from "./daily/DailyChallenge";
 import CategoryCard from "../practice/categories/CategoryCard";
+import { makeStyles } from "@material-ui/core/styles";
 import Buddy from "../buddy/Buddy";
-
-import "./Dashboard.scss";
+const useStyles = makeStyles(theme => ({
+  content: {
+    padding: "24px 8px",
+    width: "100%",
+    margin: "0"
+  },
+  header: {
+    marginTop: "48px",
+    marginBottom: "24px",
+    color: "gray",
+    fontSize: "18px"
+  }
+}));
 
 // Dashboard Container
-export default class Dashboard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+export default function Dashboard() {
+  const classes = useStyles();
 
-  render() {
-    return (
-      <div className={"dashboard"}>
-        <Navbar activeTab={"dashboard"} />
+  return (
+    <div className={"dashboard"}>
+      <Navbar activeTab={"dashboard"} />
+      <Grid
+        container
+        direction={"row"}
+        className={classes.content}
+        spacing={6}
+        justify={"space-between"}
+      >
         <Grid
           container
-          direction={"row"}
-          className={"content"}
-          spacing={6}
-          justify={"space-between"}
+          item
+          className="dashboard-problems"
+          sm={7}
+          direction="row"
         >
-          <Grid
-            container
-            item
-            className="dashboard-problems"
-            sm={7}
-            direction="row"
-          >
-            <Grid item xs={12}>
-              <DailyChallenge />
-            </Grid>
-            <Grid item xs={12}>
-              <h2 style={{ marginTop: "36px", marginBottom: "24px" }}>
-                CONTINUE PRACTICE
-              </h2>
-            </Grid>
-            <Grid container item spacing={3} direction="row" xs={12}>
-              <Grid item>
-                <CategoryCard />
-              </Grid>
-              <Grid item>
-                <CategoryCard />
-              </Grid>
-              <Grid item>
-                <CategoryCard />
-              </Grid>
-              <Grid item>
-                <CategoryCard />
-              </Grid>
-            </Grid>
+          <Grid item xs={12}>
+            <DailyChallenge />
           </Grid>
-          <Grid item sm={5}>
-            {/* Todo: Replace with buddy component */}
-            {/* <img src="/assets/buddy.png" alt="Byte Buddy" width="100%" /> */}
-            <Buddy />
+          <Grid item xs={12}>
+            <h2 className={classes.header}>CONTINUE PRACTICE</h2>
+          </Grid>
+          <Grid container item spacing={3} direction="row" xs={12}>
+            <Grid item>
+              <CategoryCard />
+            </Grid>
+            <Grid item>
+              <CategoryCard />
+            </Grid>
+            <Grid item>
+              <CategoryCard />
+            </Grid>
+            <Grid item>
+              <CategoryCard />
+            </Grid>
           </Grid>
         </Grid>
-      </div>
-    );
-  }
+        <Grid item sm={5}>
+          {/* Todo: Replace with buddy component */}
+          {/* <img src="/assets/buddy.png" alt="Byte Buddy" width="100%" /> */}
+          <Buddy />
+        </Grid>
+      </Grid>
+    </div>
+  );
 }
