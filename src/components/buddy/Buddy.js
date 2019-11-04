@@ -3,9 +3,10 @@ import LevelPoints from "./LevelPoints";
 import "./Buddy.scss";
 import { Grid, Fab } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import SvgIcon from "@material-ui/core/SvgIcon";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "./Avatar";
+
+import { userInfo } from "../../data/user";
 
 export default class Buddy extends React.Component {
   state = {
