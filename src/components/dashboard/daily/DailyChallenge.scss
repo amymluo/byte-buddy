@@ -9,3 +9,39 @@
         justify-content: space-between;
     }
 }
+
+.popup {
+    width: 700px;
+    height: 500px;
+    max-width: 100%;
+    background-color: white;
+
+    margin: auto;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #0000005d;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.popup_stamps {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.popup_stamps img {
+    width: 80px;
+}
+
+.multiple-choice {
+    margin: 20px 0;
+}
