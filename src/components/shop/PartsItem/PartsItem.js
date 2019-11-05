@@ -36,31 +36,31 @@ export default class PartsItem extends React.Component {
     const { canBuy, buyItem } = this.props;
     return (
       <div>
-        <Card
+        <div
           className={"shop-item"}
           onClick={() => this.toggleModalState(true)}
         >
-          <CardContent>
-            <Grid container direction="column" alignItems="center" spacing={2}>
-              <Grid item>
+          <Grid container direction="column" alignItems="center" spacing={2}>
+            <Grid item>
+              <div className="item-img">
                 <img
                   src={this.props.img}
                   alt={this.props.name}
                   className={"item-mainimg"}
                 />
-              </Grid>
-              <Grid item>
-                <Typography variant="h6">{this.props.name}</Typography>
-              </Grid>
-              <Grid item>
-                <div className={"item-price"}>
-                  <img src={"/assets/purple_hex.png"} alt="hex points" />
-                  <Typography varient="body2">{this.props.price}</Typography>
-                </div>
-              </Grid>
+              </div>
             </Grid>
-          </CardContent>
-        </Card>
+            <Grid item>
+              <Typography variant="h6">{this.props.name}</Typography>
+            </Grid>
+            <Grid item>
+              <div className={"item-price"}>
+                <img src={"/assets/purple_hex.png"} alt="hex points" />
+                <Typography varient="body2">{this.props.price}</Typography>
+              </div>
+            </Grid>
+          </Grid>
+        </div>
 
         <Dialog
           className={"shop-item-dialog"}

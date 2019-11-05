@@ -41,7 +41,7 @@ export default class PartsShop extends React.Component {
           >
             {items.map(item => {
               return (
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                   <PartsItem
                     img={item.img}
                     name={item.name}

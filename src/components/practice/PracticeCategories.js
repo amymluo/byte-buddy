@@ -36,31 +36,36 @@ export default class Practice extends React.Component {
     return (
       <div className={"practice"}>
         <Navbar activeTab={"practice"} userInfo={this.props.userInfo} />
-        <h1>Practice</h1>
         <Grid
           container
           direction={"row"}
           className={"content"}
           spacing={6}
-          style={{ width: "100%" }}
+          style={{ width: "100%", margin: "0" }}
         >
-          <Grid item md={8} lg={8}>
-            <Grid container direction={"row"} alignItems="center">
-              <h1>Popular Topics</h1>
+          <Grid
+            container
+            direction={"row"}
+            alignItems="center"
+            spacing={2}
+            md={8}
+          >
+            <Grid item>
+              <h1>Practice</h1>
+            </Grid>
 
-              <Grid container item spacing={3} direction="row" xs={12}>
-                <Grid item>
-                  <CategoryCard />
-                </Grid>
-                <Grid item>
-                  <CategoryCard />
-                </Grid>
-                <Grid item>
-                  <CategoryCard />
-                </Grid>
-                <Grid item>
-                  <CategoryCard />
-                </Grid>
+            <Grid container item spacing={3} direction="row" xs={12}>
+              <Grid item>
+                <CategoryCard />
+              </Grid>
+              <Grid item>
+                <CategoryCard />
+              </Grid>
+              <Grid item>
+                <CategoryCard />
+              </Grid>
+              <Grid item>
+                <CategoryCard />
               </Grid>
             </Grid>
           </Grid>
