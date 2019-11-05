@@ -20,12 +20,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 // Dashboard Container
-export default function Dashboard() {
+export default function Dashboard(props) {
   const classes = useStyles();
 
   return (
     <div className={"dashboard"}>
-      <Navbar activeTab={"dashboard"} />
+      <Navbar activeTab={"dashboard"} userInfo={props.userInfo} />
       <Grid
         container
         direction={"row"}
@@ -62,9 +62,10 @@ export default function Dashboard() {
           </Grid>
         </Grid>
         <Grid item sm={5}>
-          {/* Todo: Replace with buddy component */}
-          {/* <img src="/assets/buddy.png" alt="Byte Buddy" width="100%" /> */}
-          <Buddy />
+          <Buddy
+            buddyInfo={props.userInfo.buddy}
+            feedPoints={props.feedPoints}
+          />
         </Grid>
       </Grid>
     </div>

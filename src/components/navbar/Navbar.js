@@ -4,7 +4,6 @@ import Grid from "@material-ui/core/Grid";
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
 import Points from "./Points";
-import { userInfo } from "../../data/user";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 export default function Navbar(props) {
@@ -55,13 +54,13 @@ export default function Navbar(props) {
         spacing={2}
       >
         <Grid item>
-          <Points points={userInfo.points} />
+          <Points points={props.userInfo.points} />
         </Grid>
         <Grid item style={{ paddingRight: "0" }}>
           <AccountCircleIcon fontSize="large" />
         </Grid>
         <Grid item>
-          <span>{userInfo.name}</span>
+          <span>{props.userInfo.name}</span>
         </Grid>
       </Grid>
     </Grid>
