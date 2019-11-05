@@ -29,6 +29,9 @@ const useStyles = makeStyles(theme => ({
   },
   expandOpen: {
     transform: "rotate(180deg)"
+  },
+  dailyChallenge: {
+    color: "#6D15DC"
   }
 }));
 export default function DailyChallenge() {
@@ -67,7 +70,7 @@ export default function DailyChallenge() {
         className={"daily-challenge-content"}
         onClick={handleExpandClick}
       >
-        <h1>Daily Challenge!</h1>
+        <h1 className={classes.dailyChallenge}>Daily Challenge!</h1>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded
@@ -88,7 +91,11 @@ export default function DailyChallenge() {
             terminal private headers packet sniffer. James T. Kirk mailbomb perl
             malloc Linus Torvalds default gobble.
           </div>
-          <div className={`multiple-choice ${userHasCompleted ? 'mc--completed' : '' }`}>
+          <div
+            className={`multiple-choice ${
+              userHasCompleted ? "mc--completed" : ""
+            }`}
+          >
             <RadioGroup
               aria-label="gender"
               name="gender1"
@@ -96,76 +103,75 @@ export default function DailyChallenge() {
               onChange={handleChange}
             >
               <FormControlLabel
-              disabled={userHasCompleted}
+                disabled={userHasCompleted}
                 value="1"
                 control={<Radio />}
                 label="Answer 1"
               />
               <FormControlLabel
-              disabled={userHasCompleted}
+                disabled={userHasCompleted}
                 value="2"
                 control={<Radio />}
                 label="Answer 2"
               />
               <FormControlLabel
-              disabled={userHasCompleted}
+                disabled={userHasCompleted}
                 value="3"
                 control={<Radio />}
                 label="Answer 3"
               />
               <FormControlLabel
-              disabled={userHasCompleted}
+                disabled={userHasCompleted}
                 value="4"
                 control={<Radio />}
                 label="Answer 4"
               />
             </RadioGroup>
-            </div>
+          </div>
 
-            <Button
-              disabled={userHasCompleted}
-              variant="contained"
-              color="secondary"
-              onClick={handleModalState}
-            >
-              {userHasCompleted ? "Challenge Completed" : "Submit" }
-            </Button>
+          <Button
+            disabled={userHasCompleted}
+            variant="contained"
+            color="secondary"
+            onClick={handleModalState}
+          >
+            {userHasCompleted ? "Challenge Completed" : "Submit"}
+          </Button>
 
-            <Modal
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-              open={modalOpened}
-              onClose={handleModalState}
-            >
-              <div className="popup">
-                <h2 id="simple-modal-title">
-                  {isCorrectAnswer()
-                    ? "Great work!"
-                    : "Good try, but not quite..."}
-                </h2>
-                <p id="simple-modal-description">
-                  {/* Pull an explanation of answer here */}
-                  Duis mollis, est non commodo luctus, nisi erat porttitor
-                  ligula.
-                </p>
-                <div className="popup_stamps">
-                  <img src={stamp} />
-                  <img src={stamp} />
-                  <img src={stamp} />
-                  <img src={completeStamp} />
-                  <img src={unfilledStamp} />
-                  <img src={unfilledStamp} />
-                </div>
-
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={handleModalState}
-                >
-                  Close
-                </Button>
+          <Modal
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            open={modalOpened}
+            onClose={handleModalState}
+          >
+            <div className="popup">
+              <h2 id="simple-modal-title">
+                {isCorrectAnswer()
+                  ? "Great work!"
+                  : "Good try, but not quite..."}
+              </h2>
+              <p id="simple-modal-description">
+                {/* Pull an explanation of answer here */}
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+              </p>
+              <div className="popup_stamps">
+                <img src={stamp} />
+                <img src={stamp} />
+                <img src={stamp} />
+                <img src={completeStamp} />
+                <img src={unfilledStamp} />
+                <img src={unfilledStamp} />
               </div>
-            </Modal>
+
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={handleModalState}
+              >
+                Close
+              </Button>
+            </div>
+          </Modal>
         </CardContent>
       </Collapse>
     </Card>

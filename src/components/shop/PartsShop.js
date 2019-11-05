@@ -5,6 +5,7 @@ import PartsItem from "./PartsItem/PartsItem";
 import { items } from "../../data/items";
 
 import "./PartsShop.scss";
+import Buddy from "../buddy/Buddy";
 
 // Parts Shop Container
 export default class PartsShop extends React.Component {
@@ -24,34 +25,50 @@ export default class PartsShop extends React.Component {
         <Navbar activeTab={"shop"} userInfo={this.props.userInfo} />
         <Grid
           container
-          direction={"column"}
+          direction={"row"}
           className={"content"}
           spacing={6}
-          style={{ width: "100%" }}
+          style={{ width: "100%", margin: "0" }}
         >
-          <Grid item>
-            <h1>Parts Shop</h1>
-          </Grid>
           <Grid
-            item
             container
+            item
             direction={"row"}
-            className={"listing"}
-            spacing={4}
+            alignItems="center"
+            spacing={2}
+            md={8}
           >
-            {items.map(item => {
-              return (
-                <Grid item xs={2}>
-                  <PartsItem
-                    img={item.img}
-                    name={item.name}
-                    price={item.price}
-                    canBuy={canBuy}
-                    buyItem={buyItem}
-                  />
-                </Grid>
-              );
-            })}
+            <Grid item>
+              <h1 style={{ color: "#6D15DC" }}>Parts Shop</h1>
+            </Grid>
+            <Grid
+              item
+              container
+              direction={"row"}
+              className={"listing"}
+              spacing={4}
+            >
+              {items.map(item => {
+                return (
+                  <Grid item>
+                    <PartsItem
+                      img={item.img}
+                      name={item.name}
+                      price={item.price}
+                      canBuy={canBuy}
+                      buyItem={buyItem}
+                    />
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </Grid>
+          <Grid item md={4}>
+            <Buddy
+              buddyInfo={this.props.userInfo.buddy}
+              feedPoints={this.props.feedPoints}
+              minimized={true}
+            />
           </Grid>
         </Grid>
       </div>

@@ -45,15 +45,19 @@ export default class Practice extends React.Component {
         >
           <Grid
             container
+            item
             direction={"row"}
             alignItems="center"
             spacing={2}
             md={8}
           >
             <Grid item>
-              <h1>Practice</h1>
+              <h1 style={{ color: "#6D15DC" }}>Practice</h1>
             </Grid>
 
+            <Grid item xs={12}>
+              <h2 className="header">POPULAR TOPICS</h2>
+            </Grid>
             <Grid container item spacing={3} direction="row" xs={12}>
               <Grid item>
                 <CategoryCard />
@@ -61,6 +65,17 @@ export default class Practice extends React.Component {
               <Grid item>
                 <CategoryCard />
               </Grid>
+              <Grid item>
+                <CategoryCard />
+              </Grid>
+              <Grid item>
+                <CategoryCard />
+              </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <h2 className="header">LANGUAGES</h2>
+            </Grid>
+            <Grid container item spacing={3} direction="row" xs={12}>
               <Grid item>
                 <CategoryCard />
               </Grid>
