@@ -10,14 +10,34 @@ import { userInfo } from "../../data/user";
 
 export default class Buddy extends React.Component {
   state = {
-    name: "Bits",
-    level: 1,
-    points: 20,
-    background: "assets/bg.png"
+    level: 0,
+    points: 0
+  };
+
+  componentDidMount() {
+    const { points } = userInfo.buddy;
+    this.setState({
+      level: Math.floor(points / 50) + 1,
+      points: points % 50
+    });
+  }
+
+  feedPoints = () => {
+    const { points, buddy } = userInfo;
+    if (points > 0) {
+      userInfo.points--;
+      buddy.points++;
+
+      this.setState({
+        level: Math.floor(buddy.points / 50) + 1,
+        points: buddy.points % 50
+      });
+    }
   };
 
   render() {
-    const { name, level, points, background } = this.state;
+    const { level, points } = this.state;
+    const { background, name } = userInfo.buddy;
     return (
       <div className="buddy-container">
         <div
@@ -43,7 +63,7 @@ export default class Buddy extends React.Component {
               justify="flex-end"
             >
               <Grid item>
-                <IconButton style={{ padding: 0 }}>
+                <IconButton style={{ padding: 0 }} onClick={this.feedPoints}>
                   <img src="assets/purple_hex.png" alt="hex" width="48px" />
                 </IconButton>
               </Grid>
