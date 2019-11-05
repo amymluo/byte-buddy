@@ -8,12 +8,9 @@ import { Card } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import Button from "@material-ui/core/Button";
-
-import { userInfo, canBuy, buyItem } from "../../../data/user";
 
 //Transition for dialog on button click
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -36,6 +33,7 @@ export default class PartsItem extends React.Component {
   };
 
   render() {
+    const { canBuy, buyItem } = this.props;
     return (
       <div>
         <Card
@@ -56,7 +54,7 @@ export default class PartsItem extends React.Component {
               </Grid>
               <Grid item>
                 <div className={"item-price"}>
-                  <img src={"/assets/purple_hex.png"} />
+                  <img src={"/assets/purple_hex.png"} alt="hex points" />
                   <Typography varient="body2">{this.props.price}</Typography>
                 </div>
               </Grid>
@@ -65,7 +63,7 @@ export default class PartsItem extends React.Component {
         </Card>
 
         <Dialog
-        className={"shop-item-dialog"}
+          className={"shop-item-dialog"}
           open={this.state.isModalOpen}
           TransitionComponent={Transition}
           keepMounted
@@ -79,11 +77,11 @@ export default class PartsItem extends React.Component {
           <DialogContent>
             <Grid container direction="column" alignItems="center" spacing={2}>
               <Grid item>
-                <img src={this.props.img} />
+                <img src={this.props.img} alt="item" />
               </Grid>
               <Grid item>
                 <div className={"item-price"}>
-                  <img src={"/assets/purple_hex.png"} />
+                  <img src={"/assets/purple_hex.png"} alt="hex points" />
                   <Typography varient="body2">{this.props.price}</Typography>
                 </div>
               </Grid>
@@ -99,13 +97,11 @@ export default class PartsItem extends React.Component {
             <Button
               onClick={() => {
                 this.toggleModalState(false);
-                if(canBuy(this.props.price)) {
+                if (canBuy(this.props.price)) {
                   buyItem(this.props.price);
                 }
-                console.log()
-                
-                }
-              }
+                console.log();
+              }}
               color="primary"
             >
               Buy

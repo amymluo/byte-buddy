@@ -5,14 +5,15 @@ import { Grid, Fab } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "./Avatar";
+import cx from "classnames";
 
 export default function Buddy(props) {
-  const { buddyInfo, feedPoints } = props;
+  const { buddyInfo, feedPoints, minimized } = props;
   const level = Math.floor(buddyInfo.points / 50) + 1;
   const points = buddyInfo.points % 50;
 
   return (
-    <div className="buddy-container">
+    <div className={cx("buddy-container", { minimized })}>
       <div
         className="buddy-bg"
         style={{ backgroundImage: `url(${buddyInfo.background})` }}
@@ -40,14 +41,14 @@ export default function Buddy(props) {
                 <img src="assets/purple_hex.png" alt="hex" width="48px" />
               </IconButton>
             </Grid>
-            <Grid item>
+            <Grid item className={cx({ "no-menu": minimized })}>
               <Fab color="secondary" aria-label="menu">
                 <MenuIcon />
               </Fab>
             </Grid>
           </Grid>
         </Grid>
-        <Avatar level={level} />
+        <Avatar level={level} minimized={minimized} />
       </div>
     </div>
   );

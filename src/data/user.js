@@ -8,11 +8,3 @@ export var userData = {
     accessories: []
   }
 };
-
-export function canBuy(amount) {
-  return amount <= userData.points;
-}
-
-export function buyItem(amount) {
-  userData.points = amount;
-}

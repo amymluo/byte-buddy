@@ -118,7 +118,13 @@ export default class Practice extends React.Component {
       <div className={"practice"}>
         <Navbar activeTab={"practice"} userInfo={this.props.userInfo} />
         <h1>Practice</h1>
-        <Grid container direction={"row"} className={"content"} spacing={6}>
+        <Grid
+          container
+          direction={"row"}
+          className={"content"}
+          spacing={6}
+          style={{ width: "100%" }}
+        >
           <Grid item md={8} lg={8}>
             <Grid container direction={"row"} alignItems="center">
               <h3 style={{ marginRight: "50px" }}>{category}</h3>
@@ -130,6 +136,7 @@ export default class Practice extends React.Component {
             <Buddy
               buddyInfo={this.props.userInfo.buddy}
               feedPoints={this.props.feedPoints}
+              minimized={true}
             />
             <h2 style={{ marginLeft: "24px" }}>Filter</h2>
             <FilterBox

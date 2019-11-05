@@ -23,6 +23,17 @@ const Routes = props => {
     }
   };
 
+  const canBuy = amount => {
+    return amount <= userInfo.points;
+  };
+
+  const buyItem = amount => {
+    setUserInfo({
+      ...userInfo,
+      points: userInfo.points - amount
+    });
+  };
+
   return (
     <MuiThemeProvider theme={theme}>
       <Router>
@@ -58,7 +69,13 @@ const Routes = props => {
           <Route
             exact
             path="/shop"
-            render={() => <PartsShop userInfo={userInfo} />}
+            render={() => (
+              <PartsShop
+                userInfo={userInfo}
+                canBuy={canBuy}
+                buyItem={buyItem}
+              />
+            )}
           />
           <Route
             exact

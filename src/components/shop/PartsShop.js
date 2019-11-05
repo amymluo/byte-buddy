@@ -1,8 +1,8 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import Navbar from "../navbar/Navbar";
 import PartsItem from "./PartsItem/PartsItem";
+import { items } from "../../data/items";
 
 import "./PartsShop.scss";
 
@@ -18,10 +18,17 @@ export default class PartsShop extends React.Component {
   }
 
   render() {
+    const { canBuy, buyItem } = this.props;
     return (
       <div className={"parts-shop"}>
-        <Navbar activeTab={"shop"} />
-        <Grid container direction={"column"} className={"content"} spacing={6}>
+        <Navbar activeTab={"shop"} userInfo={this.props.userInfo} />
+        <Grid
+          container
+          direction={"column"}
+          className={"content"}
+          spacing={6}
+          style={{ width: "100%" }}
+        >
           <Grid item>
             <h1>Parts Shop</h1>
           </Grid>
@@ -32,43 +39,19 @@ export default class PartsShop extends React.Component {
             className={"listing"}
             spacing={4}
           >
-            <Grid item xs={3}>
-              <PartsItem
-                img={"/assets/shop/bbcap.png"}
-                name={"Baseball Cap"}
-                price={10}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <PartsItem
-                img={"/assets/shop/cowboyhat.png"}
-                name={"Cowboy Hat"}
-                price={`testprice`}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <PartsItem
-                img={"/assets/shop/crown.png"}
-                name={"Crown"}
-                price={10}
-              />
-            </Grid>
-
-            <Grid item xs={3}>
-              <PartsItem
-                img={"/assets/shop/knithat.png"}
-                name={"Knit Hat"}
-                price={15}
-              />
-            </Grid>
-
-            <Grid item xs={3}>
-              <PartsItem
-                img={"/assets/shop/orangescarf.png"}
-                name={"Orange Scarf"}
-                price={20}
-              />
-            </Grid>
+            {items.map(item => {
+              return (
+                <Grid item xs={3}>
+                  <PartsItem
+                    img={item.img}
+                    name={item.name}
+                    price={item.price}
+                    canBuy={canBuy}
+                    buyItem={buyItem}
+                  />
+                </Grid>
+              );
+            })}
           </Grid>
         </Grid>
       </div>
