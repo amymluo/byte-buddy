@@ -3,8 +3,6 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
 import "./PartsItem.scss";
-import { CardContent } from "@material-ui/core";
-import { Card } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -71,13 +69,20 @@ export default class PartsItem extends React.Component {
           aria-labelledby="alert-dialog-slide-title"
           aria-describedby="alert-dialog-slide-description"
         >
-          <DialogTitle id="alert-dialog-slide-title">
-            {this.props.name}
-          </DialogTitle>
-          <DialogContent>
+          <DialogTitle id="alert-dialog-slide-title">Confirm Buy</DialogTitle>
+          <DialogContent style={{ width: "300px" }}>
             <Grid container direction="column" alignItems="center" spacing={2}>
               <Grid item>
-                <img src={this.props.img} alt="item" />
+                <div className="item-img">
+                  <img
+                    src={this.props.img}
+                    alt={this.props.name}
+                    className={"item-mainimg"}
+                  />
+                </div>
+              </Grid>
+              <Grid item>
+                <Typography variant="h6">{this.props.name}</Typography>
               </Grid>
               <Grid item>
                 <div className={"item-price"}>
@@ -103,6 +108,7 @@ export default class PartsItem extends React.Component {
                 console.log();
               }}
               color="primary"
+              variant="contained"
             >
               Buy
             </Button>

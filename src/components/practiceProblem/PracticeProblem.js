@@ -9,12 +9,10 @@ import ProblemTab from "./ProblemTab";
 import HintTab from "./HintTab";
 import { PROBLEMS } from "../../constants/problems";
 
-import { useParams } from "react-router-dom";
-
 import "./PracticeProblem.scss";
 
 const getUrlParameter = name => {
-  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  name = name.replace(/[[]/, "\\[").replace(/[\]]/, "\\]");
   let regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
   let results = regex.exec(window.location.search);
   return results === null
@@ -23,7 +21,7 @@ const getUrlParameter = name => {
 };
 
 function TabPanel(props) {
-  const { children, value, index, view, ...other } = props;
+  const { value, index, view } = props;
   if (value !== index) {
     return <div></div>;
   } else {
