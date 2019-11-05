@@ -13,6 +13,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import Button from "@material-ui/core/Button";
 
+import { userInfo, canBuy, buyItem } from "../../../data/user";
+
 //Transition for dialog on button click
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -44,7 +46,7 @@ export default class PartsItem extends React.Component {
             <Grid container direction="column" alignItems="center" spacing={2}>
               <Grid item>
                 <img
-                  src={"/assets/purple_hex.png"}
+                  src={this.props.img}
                   alt={this.props.name}
                   className={"item-mainimg"}
                 />
@@ -77,7 +79,7 @@ export default class PartsItem extends React.Component {
           <DialogContent>
             <Grid container direction="column" alignItems="center" spacing={2}>
               <Grid item>
-                <img src={"/assets/purple_hex.png"} />
+                <img src={this.props.img} />
               </Grid>
               <Grid item>
                 <div className={"item-price"}>
@@ -95,7 +97,15 @@ export default class PartsItem extends React.Component {
               Cancel
             </Button>
             <Button
-              onClick={() => this.toggleModalState(false)}
+              onClick={() => {
+                this.toggleModalState(false);
+                if(canBuy(this.props.price)) {
+                  buyItem(this.props.price);
+                }
+                console.log()
+                
+                }
+              }
               color="primary"
             >
               Buy

@@ -34,39 +34,39 @@ export default class PartsShop extends React.Component {
           >
             <Grid item xs={3}>
               <PartsItem
-                img={`testimg`}
-                name={`testname`}
+                img={"/assets/shop/bbcap.png"}
+                name={"Baseball Cap"}
+                price={10}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <PartsItem
+                img={"/assets/shop/cowboyhat.png"}
+                name={"Cowboy Hat"}
                 price={`testprice`}
               />
             </Grid>
             <Grid item xs={3}>
               <PartsItem
-                img={`testimg`}
-                name={`testname`}
-                price={`testprice`}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <PartsItem
-                img={`testimg`}
-                name={`testname`}
-                price={`testprice`}
-              />
-            </Grid>
-
-            <Grid item xs={3}>
-              <PartsItem
-                img={`testimg`}
-                name={`testname`}
-                price={`testprice`}
+                img={"/assets/shop/crown.png"}
+                name={"Crown"}
+                price={10}
               />
             </Grid>
 
             <Grid item xs={3}>
               <PartsItem
-                img={`testimg`}
-                name={`testname`}
-                price={`testprice`}
+                img={"/assets/shop/knithat.png"}
+                name={"Knit Hat"}
+                price={15}
+              />
+            </Grid>
+
+            <Grid item xs={3}>
+              <PartsItem
+                img={"/assets/shop/orangescarf.png"}
+                name={"Orange Scarf"}
+                price={20}
               />
             </Grid>
           </Grid>
