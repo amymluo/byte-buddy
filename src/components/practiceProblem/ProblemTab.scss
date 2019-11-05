@@ -1,0 +1,24 @@
+.code_box {
+    width: 100%;
+    border: 1px solid black !important;
+}
+
+.problem-tab {
+
+  .content {
+    padding: 48px 60px;
+  }
+
+  .header {
+    margin-top: 30px
+  }
+}
+
+.button_box {
+    display: flex;
+    justify-content: right;
+    justify-items: right;
+    flex-direction: row-reverse;
+}
+
+

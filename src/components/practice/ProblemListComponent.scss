@@ -1,0 +1,47 @@
+.list {
+  display: flex;
+}
+
+.root {
+  flex-grow: 1;
+  padding: "10px";
+}
+
+.paper {
+  padding: 1px;
+  text-align: "left";
+  color: "black";
+}
+
+.align {
+  align-items: "center";
+  border: "1px solid #c3c3c3";
+}
+
+.iconHolder {
+  display: flex;
+}
+
+.buttonHolder {
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+.alignSelf {
+  align-self: center;
+  padding-right: 10px;
+}
+
+.buttonSolved {
+  background-color: "white";
+  color: "#ff663e";
+  border-color: "#ff663e";
+  height: 36px;
+}
+
+.buttonUnsolved {
+  background-color: "#ff663e";
+  color: "white";
+  height: 36px;
+}
