@@ -55,7 +55,6 @@ export default class Practice extends React.Component {
       questions: PROBLEM_INFO
     };
 
-    console.log(this.state.category);
   }
 
   myCallback = dataFromChild => {
@@ -112,12 +111,21 @@ export default class Practice extends React.Component {
   }
 
   render() {
-    const input = InputWithIcon();
+    // const input = InputWithIcon();
+    const input = null;
     const { category } = this.state;
     return (
       <div className={"practice"}>
         <Navbar activeTab={"practice"} userInfo={this.props.userInfo} />
-        <h1>Practice</h1>
+        <Grid
+        container
+        direction={"row"}
+        className={"content"}
+        spacing={6}
+        justify={"space-between"}
+      >
+
+        <h1 style={{paddingLeft: "24px", color: "#6d15dc"}}>Practice</h1>
         <Grid
           container
           direction={"row"}
@@ -150,15 +158,17 @@ export default class Practice extends React.Component {
               title={difficultyTitile}
               callbackFromParent={this.myCallback}
             />
-            <hr />
+            {/* <hr />
             <FilterBox
               values={topics}
               title={topicsTitle}
               callbackFromParent={this.myCallback}
-            />
+            /> */}
           </Grid>
         </Grid>
+        </Grid>
       </div>
+
     );
   }
 }

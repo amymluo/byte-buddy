@@ -7,8 +7,8 @@ import Tab from "@material-ui/core/Tab";
 import Navbar from "../navbar/Navbar";
 import ProblemTab from "./ProblemTab";
 import HintTab from "./HintTab";
-import { PROBLEMS } from "../../constants/problems";
-
+import Buddy from "../buddy/Buddy";
+import { PROBLEMS, PROBLEM_INFO } from "../../constants/problems";
 import "./PracticeProblem.scss";
 
 const getUrlParameter = name => {
@@ -44,6 +44,12 @@ export default class PracticeProblem extends React.Component {
     });
   }
 
+  getPracticeProblemDifficult(id) {
+    return PROBLEM_INFO.find(p => {
+      return p.id == id;
+    });
+  }
+
   handleChange = (event, newValue) => {
     this.setState({ activeTabIndex: newValue });
   };
@@ -51,15 +57,25 @@ export default class PracticeProblem extends React.Component {
   render() {
     const problemId = getUrlParameter("problem");
     const problem = this.getPracticeProblem(problemId);
+    const problemDifficulty = this.getPracticeProblemDifficult(problemId);
     const value = this.state.activeTabIndex;
-    const problemTabView = <ProblemTab problem={problem} />;
+    const problemTabView = <ProblemTab problem={problem} points={problemDifficulty.points}/>;
     const hintTabView = <HintTab problemId={problemId} />;
 
     return (
-      <div className={"parts-shop"}>
+      <div className={"practice-problem"}>
         <Navbar activeTab={"practice"} userInfo={this.props.userInfo} />
-        <Grid container direction={"column"} className={"content"} spacing={6}>
-          <h1>{problem.name}</h1>
+
+                  <Grid
+        container
+        direction={"row"}
+        className={"content"}
+        spacing={6}
+        justify={"space-between"}
+      >
+
+          <Grid item md={8} lg={8}>
+                    <h1 className={"header-style"}>{problem.name}</h1>
 
           <Paper square>
             <Tabs
@@ -77,6 +93,27 @@ export default class PracticeProblem extends React.Component {
           <TabPanel value={value} index={0} view={problemTabView} />
           <TabPanel value={value} index={1} view={hintTabView} />
           <TabPanel value={value} index={2} />
+          </Grid>
+          <Grid item md={4}>
+            <Buddy
+              buddyInfo={this.props.userInfo.buddy}
+              feedPoints={problemDifficulty.points}
+              minimized={true}
+            />
+            <div className="info-box">
+              <p className={"info-box-header"}>DIFFICULTY</p>
+              <p>{problemDifficulty.difficulty}</p>
+            </div>
+            <div className="info-box">
+              <p className={"info-box-header"}>POINTS</p>
+              <p>{problemDifficulty.points}</p>
+            </div>
+            <div className="info-box">
+              <p className={"info-box-header"}>TOPIC</p>
+              <p>{problemDifficulty.topic}</p>
+            </div>
+          </Grid>
+
         </Grid>
       </div>
     );
