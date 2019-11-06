@@ -153,6 +153,11 @@ export default function DailyChallenge() {
               <p id="simple-modal-description">
                 {/* Pull an explanation of answer here */}
                 Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
               </p>
               <div className="popup_stamps">
                 <img src={stamp} />
@@ -168,7 +173,7 @@ export default function DailyChallenge() {
                 color="secondary"
                 onClick={handleModalState}
               >
-                Close
+                Got it!
               </Button>
             </div>
           </Modal>

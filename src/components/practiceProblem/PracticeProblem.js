@@ -56,12 +56,13 @@ export default class PracticeProblem extends React.Component {
     const hintTabView = <HintTab problemId={problemId} />;
 
     return (
-      <div className={"parts-shop"}>
-        <Navbar activeTab={"practice"} userInfo={this.props.userInfo} />
+      <div>
+        <Navbar activeTab={"practice"} userInfo={this.props.userInfo}/>
         <Grid container direction={"column"} className={"content"} spacing={6}>
-          <h1>{problem.name}</h1>
+          <h1 style={{'marginBottom': 20}}>{problem.name}</h1>
 
-          <Paper square>
+          <Paper square
+              className='practice_navbar'>
             <Tabs
               value={value}
               indicatorColor="primary"
