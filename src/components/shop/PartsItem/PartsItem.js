@@ -20,7 +20,8 @@ export default class PartsItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isModalOpen: false
+      isModalOpen: false,
+      canAfford: false
     };
   }
 
@@ -30,8 +31,15 @@ export default class PartsItem extends React.Component {
     });
   };
 
+  canNotAfford = () => {
+    this.setState({
+      canAfford: true
+    })
+  }
+
   render() {
     const { canBuy, buyItem } = this.props;
+    const { canAfford } = this.state;
     return (
       <div>
         <div
@@ -90,6 +98,7 @@ export default class PartsItem extends React.Component {
                   <Typography varient="body2">{this.props.price}</Typography>
                 </div>
               </Grid>
+              { canAfford && <Typography className={"warning"} varient="body2">Sorry, you dont have enough points to buy this item.</Typography>}
             </Grid>
           </DialogContent>
           <DialogActions>
@@ -101,11 +110,13 @@ export default class PartsItem extends React.Component {
             </Button>
             <Button
               onClick={() => {
-                this.toggleModalState(false);
                 if (canBuy(this.props.price)) {
+                  this.toggleModalState(false);
                   buyItem(this.props.price);
                 }
-                console.log();
+                else {
+                  this.canNotAfford();
+                }
               }}
               color="primary"
               variant="contained"
