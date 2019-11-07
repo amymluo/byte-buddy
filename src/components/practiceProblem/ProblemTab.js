@@ -39,6 +39,8 @@ constructor(props) {
     });
   };
 
+
+
   render() {
     const { problem } = this.props;
     return (
@@ -107,7 +109,10 @@ constructor(props) {
           </DialogContent>
           <DialogActions>
             <Button
-              onClick={() => this.toggleModalState(false)}
+              onClick={() => {
+                this.toggleModalState(false);
+                this.props.addPoints(this.props.points);
+                }}
               color="primary"
             >
               OK

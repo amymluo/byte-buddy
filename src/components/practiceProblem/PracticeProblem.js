@@ -63,7 +63,7 @@ export default class PracticeProblem extends React.Component {
     const problem = this.getPracticeProblem(problemId);
     const problemDifficulty = this.getPracticeProblemDifficult(problemId);
     const value = this.state.activeTabIndex;
-    const problemTabView = <ProblemTab problem={problem} points={problemDifficulty.points}/>;
+    const problemTabView = <ProblemTab problem={problem} points={problemDifficulty.points} addPoints={this.props.addPoints}/>;
     const hintTabView = <HintTab problemId={problemId} />;
     const solutionTabView = <SolutionsTab problemId={problemId}/>;
 
@@ -108,7 +108,7 @@ export default class PracticeProblem extends React.Component {
           <Grid item md={4}>
             <Buddy
               buddyInfo={this.props.userInfo.buddy}
-              feedPoints={problemDifficulty.points}
+              feedPoints={this.props.feedPoints}
               minimized={true}
             />
             <div className="info-box">

@@ -41,7 +41,7 @@ export default function Dashboard(props) {
           direction="row"
         >
           <Grid item xs={12}>
-            <DailyChallenge />
+            <DailyChallenge addPoints={props.addPoints} completeChallenge={props.completeChallenge} isCompleted={props.isCompleted}/>
           </Grid>
           <Grid item xs={12}>
             <h2 className={classes.header}>CONTINUE PRACTICE</h2>

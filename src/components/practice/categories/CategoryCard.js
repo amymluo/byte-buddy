@@ -28,10 +28,11 @@ export default class CategoryCard extends React.Component {
               color="secondary"
               aria-label="go"
               style={{ marginTop: "-30px" }}
-            >
-              <ArrowForwardIosIcon onClick={() => {
+              onClick={() => {
         window.location.href = "/practiceList?category=" + title ;
-    }}/>
+    }}
+            >
+              <ArrowForwardIosIcon/>
             </Fab>
           </div>
           <div className="percent-completed">{`${percentCompleted}% complete`}</div>

@@ -1,1 +1,5 @@
-export var completedDailyChallenge = false;
+
+
+export var completedDailyChallenge = {
+  isCompleted: false
+};

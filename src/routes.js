@@ -8,9 +8,12 @@ import Practice from "./components/practice/Practice";
 import PracticeProblem from "./components/practiceProblem/PracticeProblem";
 import PartsShop from "./components/shop/PartsShop";
 import { userData } from "./data/user";
+import { completedDailyChallenge } from "./data/dailyChallenge";
 
 const Routes = props => {
   const [userInfo, setUserInfo] = useState(userData);
+  const [isCompleted, setIsCompleted] = useState(completedDailyChallenge);
+
 
   const feedPoints = () => {
     const { points, buddy } = userInfo;
@@ -34,6 +37,20 @@ const Routes = props => {
     });
   };
 
+  const addPoints = amount => {
+    setUserInfo({
+      ...userInfo,
+      points: userInfo.points + amount
+    });
+  };
+
+  const completeChallenge = isCompletedValue => {
+    setIsCompleted({
+      isCompleted: isCompletedValue
+    });
+
+  }
+
   return (
     <MuiThemeProvider theme={theme}>
       <Router>
@@ -42,14 +59,14 @@ const Routes = props => {
             exact
             path="/"
             render={() => (
-              <Dashboard userInfo={userInfo} feedPoints={feedPoints} />
+              <Dashboard userInfo={userInfo} feedPoints={feedPoints} completeChallenge={completeChallenge} isCompleted={isCompleted} addPoints={addPoints}/>
             )}
           />
           <Route
             exact
             path="/dashboard"
             render={() => (
-              <Dashboard userInfo={userInfo} feedPoints={feedPoints} />
+              <Dashboard userInfo={userInfo} feedPoints={feedPoints} completeChallenge={completeChallenge} isCompleted={isCompleted} addPoints={addPoints}/>
             )}
           />
           <Route
@@ -73,6 +90,7 @@ const Routes = props => {
               <PartsShop
                 userInfo={userInfo}
                 canBuy={canBuy}
+                feedPoints={feedPoints}
                 buyItem={buyItem}
               />
             )}
@@ -80,7 +98,7 @@ const Routes = props => {
           <Route
             exact
             path="/problem"
-            render={() => <PracticeProblem userInfo={userInfo} />}
+            render={() => <PracticeProblem userInfo={userInfo} addPoints={addPoints} feedPoints={feedPoints}/>}
           />
         </Switch>
       </Router>

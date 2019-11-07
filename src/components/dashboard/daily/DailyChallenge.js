@@ -5,8 +5,6 @@ import unfilledStamp from "./img/stamp_empty.png";
 import completeStamp from "./img/stamp_complete.gif";
 import clsx from "clsx";
 
-import { completedDailyChallenge } from "../../../data/dailyChallenge";
-
 import "./DailyChallenge.scss";
 import {
   Card,
@@ -36,12 +34,16 @@ const useStyles = makeStyles(theme => ({
     color: "#6D15DC"
   }
 }));
-export default function DailyChallenge() {
+export default function DailyChallenge(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [value, setValue] = React.useState("1");
+  const [pointsRewarded, setPointsRewarded] = React.useState(5);
+
   const [modalOpened, setModalState] = React.useState(false);
-  const [userHasCompleted, setCompleted] = React.useState(completedDailyChallenge);
+  // const [userHasCompleted, setCompleted] = React.useState(props.isCompleted);
+  const userHasCompleted = props.isCompleted.isCompleted;
+
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -52,13 +54,12 @@ export default function DailyChallenge() {
   };
 
   const handleUserCompletion = () => {
-    setCompleted(true);
+    // setCompleted(true);
   };
 
-  const handleModalState = (completedDailyChallenge) => {
+  const handleModalState = () => {
     /* TODO: prevent user from submitting again after refreshing/reentering the page */
     setModalState(!modalOpened);
-  completedDailyChallenge = false;
     handleUserCompletion();
   };
 
@@ -67,6 +68,7 @@ export default function DailyChallenge() {
     // return false;
     return value === "2";
   };
+
   return (
     <Card className={"daily-challenge"} width="450px">
       <CardContent
@@ -132,7 +134,7 @@ export default function DailyChallenge() {
             disabled={userHasCompleted}
             variant="contained"
             color="secondary"
-            onClick={() => handleModalState(completedDailyChallenge)}
+            onClick={() => handleModalState()}
           >
             {userHasCompleted ? "Challenge Completed" : "Submit"}
           </Button>
@@ -141,7 +143,7 @@ export default function DailyChallenge() {
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"
             open={modalOpened}
-            onClose={() => handleModalState(completedDailyChallenge)}
+            onClose={() => handleModalState()}
           >
             <div className="popup">
               <h2 id="simple-modal-title">
@@ -165,7 +167,11 @@ export default function DailyChallenge() {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={() => handleModalState(completedDailyChallenge)}
+                onClick={() => {
+                  handleModalState();
+                  props.completeChallenge(true);
+                  props.addPoints(pointsRewarded);
+                }}
               >
                 Got it!
               </Button>
