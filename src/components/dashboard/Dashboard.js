@@ -5,6 +5,7 @@ import DailyChallenge from "./daily/DailyChallenge";
 import CategoryCard from "../practice/categories/CategoryCard";
 import { makeStyles } from "@material-ui/core/styles";
 import Buddy from "../buddy/Buddy";
+import Tutorial from "./tutorial/Tutorial";
 const useStyles = makeStyles(theme => ({
   content: {
     padding: "24px 8px",
@@ -41,7 +42,11 @@ export default function Dashboard(props) {
           direction="row"
         >
           <Grid item xs={12}>
-            <DailyChallenge addPoints={props.addPoints} completeChallenge={props.completeChallenge} isCompleted={props.isCompleted}/>
+            <DailyChallenge
+              addPoints={props.addPoints}
+              completeChallenge={props.completeChallenge}
+              isCompleted={props.isCompleted}
+            />
           </Grid>
           <Grid item xs={12}>
             <h2 className={classes.header}>CONTINUE PRACTICE</h2>
@@ -68,6 +73,10 @@ export default function Dashboard(props) {
           />
         </Grid>
       </Grid>
+      <Tutorial
+        open={props.userInfo.isNew}
+        setTutorialComplete={props.setTutorialComplete}
+      />
     </div>
   );
 }

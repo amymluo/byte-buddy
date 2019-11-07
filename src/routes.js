@@ -14,7 +14,6 @@ const Routes = props => {
   const [userInfo, setUserInfo] = useState(userData);
   const [isCompleted, setIsCompleted] = useState(completedDailyChallenge);
 
-
   const feedPoints = () => {
     const { points, buddy } = userInfo;
     if (points > 0) {
@@ -44,12 +43,18 @@ const Routes = props => {
     });
   };
 
+  const setTutorialComplete = () => {
+    setUserInfo({
+      ...userInfo,
+      isNew: false
+    });
+  };
+
   const completeChallenge = isCompletedValue => {
     setIsCompleted({
       isCompleted: isCompletedValue
     });
-
-  }
+  };
 
   return (
     <MuiThemeProvider theme={theme}>
@@ -59,14 +64,28 @@ const Routes = props => {
             exact
             path="/"
             render={() => (
-              <Dashboard userInfo={userInfo} feedPoints={feedPoints} completeChallenge={completeChallenge} isCompleted={isCompleted} addPoints={addPoints}/>
+              <Dashboard
+                userInfo={userInfo}
+                feedPoints={feedPoints}
+                completeChallenge={completeChallenge}
+                isCompleted={isCompleted}
+                addPoints={addPoints}
+                setTutorialComplete={setTutorialComplete}
+              />
             )}
           />
           <Route
             exact
             path="/dashboard"
             render={() => (
-              <Dashboard userInfo={userInfo} feedPoints={feedPoints} completeChallenge={completeChallenge} isCompleted={isCompleted} addPoints={addPoints}/>
+              <Dashboard
+                userInfo={userInfo}
+                feedPoints={feedPoints}
+                completeChallenge={completeChallenge}
+                isCompleted={isCompleted}
+                addPoints={addPoints}
+                setTutorialComplete={setTutorialComplete}
+              />
             )}
           />
           <Route
@@ -98,7 +117,13 @@ const Routes = props => {
           <Route
             exact
             path="/problem"
-            render={() => <PracticeProblem userInfo={userInfo} addPoints={addPoints} feedPoints={feedPoints}/>}
+            render={() => (
+              <PracticeProblem
+                userInfo={userInfo}
+                addPoints={addPoints}
+                feedPoints={feedPoints}
+              />
+            )}
           />
         </Switch>
       </Router>
