@@ -7,9 +7,12 @@ import Tab from "@material-ui/core/Tab";
 import Navbar from "../navbar/Navbar";
 import ProblemTab from "./ProblemTab";
 import HintTab from "./HintTab";
-import { PROBLEMS } from "../../constants/problems";
-
+import SolutionsTab from "./SolutionsTab";
+import Buddy from "../buddy/Buddy";
+import { PROBLEMS, PROBLEM_INFO } from "../../constants/problems";
 import "./PracticeProblem.scss";
+
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 const getUrlParameter = name => {
   name = name.replace(/[[]/, "\\[").replace(/[\]]/, "\\]");
@@ -44,25 +47,48 @@ export default class PracticeProblem extends React.Component {
     });
   }
 
+  getPracticeProblemDifficult(id) {
+    return PROBLEM_INFO.find(p => {
+      return p.id == id;
+    });
+  }
+
   handleChange = (event, newValue) => {
     this.setState({ activeTabIndex: newValue });
   };
 
   render() {
     const problemId = getUrlParameter("problem");
+    const category = getUrlParameter("category");
     const problem = this.getPracticeProblem(problemId);
+    const problemDifficulty = this.getPracticeProblemDifficult(problemId);
     const value = this.state.activeTabIndex;
-    const problemTabView = <ProblemTab problem={problem} />;
+    const problemTabView = <ProblemTab problem={problem} points={problemDifficulty.points}/>;
     const hintTabView = <HintTab problemId={problemId} />;
+    const solutionTabView = <SolutionsTab problemId={problemId}/>;
 
     return (
-      <div>
-        <Navbar activeTab={"practice"} userInfo={this.props.userInfo}/>
-        <Grid container direction={"column"} className={"content"} spacing={6}>
-          <h1 style={{'marginBottom': 20}}>{problem.name}</h1>
+      <div className={"practice-problem"}>
+        <Navbar activeTab={"practice"} userInfo={this.props.userInfo} />
 
-          <Paper square
-              className='practice_navbar'>
+
+                  <Grid
+        container
+        direction={"row"}
+        className={"content"}
+        spacing={6}
+        justify={"space-between"}
+      >
+
+          <Grid item md={8} lg={8}>
+          <div className="backButton" onClick={() => {
+        window.location.href = "/practiceList?category=" + category ;
+    }}>
+          <ArrowBackIosIcon /> Back
+    </div>
+                    <h1 className={"header-style"}>{problem.name}</h1>
+
+          <Paper square>
             <Tabs
               value={value}
               indicatorColor="primary"
@@ -77,7 +103,28 @@ export default class PracticeProblem extends React.Component {
           </Paper>
           <TabPanel value={value} index={0} view={problemTabView} />
           <TabPanel value={value} index={1} view={hintTabView} />
-          <TabPanel value={value} index={2} />
+          <TabPanel value={value} index={2} view={solutionTabView}/>
+          </Grid>
+          <Grid item md={4}>
+            <Buddy
+              buddyInfo={this.props.userInfo.buddy}
+              feedPoints={problemDifficulty.points}
+              minimized={true}
+            />
+            <div className="info-box">
+              <p className={"info-box-header"}>DIFFICULTY</p>
+              <p>{problemDifficulty.difficulty}</p>
+            </div>
+            <div className="info-box">
+              <p className={"info-box-header"}>POINTS</p>
+              <p>{problemDifficulty.points}</p>
+            </div>
+            <div className="info-box">
+              <p className={"info-box-header"}>TOPIC</p>
+              <p>{problemDifficulty.topic}</p>
+            </div>
+          </Grid>
+
         </Grid>
       </div>
     );

@@ -5,6 +5,8 @@ import unfilledStamp from "./img/stamp_empty.png";
 import completeStamp from "./img/stamp_complete.gif";
 import clsx from "clsx";
 
+import { completedDailyChallenge } from "../../../data/dailyChallenge";
+
 import "./DailyChallenge.scss";
 import {
   Card,
@@ -39,7 +41,7 @@ export default function DailyChallenge() {
   const [expanded, setExpanded] = React.useState(false);
   const [value, setValue] = React.useState("1");
   const [modalOpened, setModalState] = React.useState(false);
-  const [userHasCompleted, setCompleted] = React.useState(false);
+  const [userHasCompleted, setCompleted] = React.useState(completedDailyChallenge);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -53,9 +55,10 @@ export default function DailyChallenge() {
     setCompleted(true);
   };
 
-  const handleModalState = () => {
+  const handleModalState = (completedDailyChallenge) => {
     /* TODO: prevent user from submitting again after refreshing/reentering the page */
     setModalState(!modalOpened);
+  completedDailyChallenge = false;
     handleUserCompletion();
   };
 
@@ -85,11 +88,7 @@ export default function DailyChallenge() {
         {/* Todo: populate question */}
         <CardContent>
           <div className="question">
-            Irc rm -rf segfault hello world bit try catch kilo boolean wannabee
-            fail memory leak sudo. Overflow tunnel in overflow firewall void
-            tarball int wombat hexadecimal throw over clock if d00dz port
-            terminal private headers packet sniffer. James T. Kirk mailbomb perl
-            malloc Linus Torvalds default gobble.
+            What data structure should you use for Depth First Search?
           </div>
           <div
             className={`multiple-choice ${
@@ -106,25 +105,25 @@ export default function DailyChallenge() {
                 disabled={userHasCompleted}
                 value="1"
                 control={<Radio />}
-                label="Answer 1"
+                label="Hash Map"
               />
               <FormControlLabel
                 disabled={userHasCompleted}
                 value="2"
                 control={<Radio />}
-                label="Answer 2"
+                label="Stack"
               />
               <FormControlLabel
                 disabled={userHasCompleted}
                 value="3"
                 control={<Radio />}
-                label="Answer 3"
+                label="Queue"
               />
               <FormControlLabel
                 disabled={userHasCompleted}
                 value="4"
                 control={<Radio />}
-                label="Answer 4"
+                label="Set"
               />
             </RadioGroup>
           </div>
@@ -133,7 +132,7 @@ export default function DailyChallenge() {
             disabled={userHasCompleted}
             variant="contained"
             color="secondary"
-            onClick={handleModalState}
+            onClick={() => handleModalState(completedDailyChallenge)}
           >
             {userHasCompleted ? "Challenge Completed" : "Submit"}
           </Button>
@@ -142,7 +141,7 @@ export default function DailyChallenge() {
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"
             open={modalOpened}
-            onClose={handleModalState}
+            onClose={() => handleModalState(completedDailyChallenge)}
           >
             <div className="popup">
               <h2 id="simple-modal-title">
@@ -152,12 +151,7 @@ export default function DailyChallenge() {
               </h2>
               <p id="simple-modal-description">
                 {/* Pull an explanation of answer here */}
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+                Depth first search should use a stack because it requires a LIFO (last in first out) structure.
               </p>
               <div className="popup_stamps">
                 <img src={stamp} />
@@ -171,7 +165,7 @@ export default function DailyChallenge() {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={handleModalState}
+                onClick={() => handleModalState(completedDailyChallenge)}
               >
                 Got it!
               </Button>

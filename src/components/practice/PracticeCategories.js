@@ -59,7 +59,7 @@ export default class Practice extends React.Component {
               <h2 className="header">POPULAR TOPICS</h2>
             </Grid>
             <Grid container item spacing={3} direction="row" xs={12}>
-              <Grid item>
+              {/* <Grid item>
                 <CategoryCard />
               </Grid>
               <Grid item>
@@ -67,13 +67,13 @@ export default class Practice extends React.Component {
               </Grid>
               <Grid item>
                 <CategoryCard />
-              </Grid>
+              </Grid> */}
               <Grid item>
                 <CategoryCard />
               </Grid>
             </Grid>
             <Grid item xs={12}>
-              <h2 className="header">LANGUAGES</h2>
+              {/* <h2 className="header">LANGUAGES</h2>
             </Grid>
             <Grid container item spacing={3} direction="row" xs={12}>
               <Grid item>
@@ -81,7 +81,7 @@ export default class Practice extends React.Component {
               </Grid>
               <Grid item>
                 <CategoryCard />
-              </Grid>
+              </Grid> */}
             </Grid>
           </Grid>
           <Grid item md={4}>

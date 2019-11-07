@@ -7,8 +7,8 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 export default class CategoryCard extends React.Component {
   state = {
     title: "Algorithms",
-    numCompleted: 12,
-    numChallenges: 50
+    numCompleted: 2,
+    numChallenges: 4
   };
 
   render() {

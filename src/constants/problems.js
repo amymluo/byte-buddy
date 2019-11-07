@@ -54,10 +54,10 @@ export var PROBLEMS = [
 ]
 
 export var PROBLEM_INFO = [
-        {id: 1, name: "Time Conversion", difficulty: "Easy", points: 5, isSolved: false, isShown: true},
-        {id: 2, name: "Reverse Integer", difficulty: "Medium", points: 5, isSolved: true, isShown: true},
-        {id: 3, name: "Forming a Magic Square", difficulty: "Easy", points: 7, isSolved: false, isShown: true},
-        {id: 4, name: "Simple Array Sum", difficulty: "Hard", points: 10, isSolved: true, isShown: true}
+        {id: 1, name: "Time Conversion", difficulty: "Easy", points: 5, isSolved: false, isShown: true, topic: "Algorithms"},
+        {id: 2, name: "Reverse Integer", difficulty: "Medium", points: 5, isSolved: true, isShown: true, topic: "Algorithms"},
+        {id: 3, name: "Forming a Magic Square", difficulty: "Easy", points: 7, isSolved: false, isShown: true, topic: "Algorithms"},
+        {id: 4, name: "Simple Array Sum", difficulty: "Hard", points: 10, isSolved: true, isShown: true, topic: "Algorithms"}
 ]
 
 export var HINTS = [
@@ -82,13 +82,25 @@ export var HINTS = [
 export var SOLUTIONS = [
     {
         id: 1,
-        solutions: [""]
-    }
+        solutions: ["Language: Python 3 \nfrom datetime import datetime, date \ndef timeConversion(s): \ndate_time = datetime.strptime(s, '%I:%M:%S%p') \ntime = date_time.time()\nreturn str(time)"]
+    },
+    {
+        id: 2,
+        solutions: ['n=int(input("Enter number: "))\nrev=0\nwhile(n>0):\ndig=n%10\nrev=rev*10+dig\nn=n//10\nprint("Reverse of the number:",rev)']
+    },
+    {
+        id: 3,
+        solutions: ["Sorry, come back later."]
+    },
+    {
+        id: 4,
+        solutions: ["sum(your_list)"]
+    },
 ]
 
 export var DISCUSSION = [
     {
         id: 1,
-        discussions: []
+        discussions: [""]
     }
 ]

@@ -50,7 +50,7 @@ export default function Dashboard(props) {
             <Grid item>
               <CategoryCard />
             </Grid>
-            <Grid item>
+            {/* <Grid item>
               <CategoryCard />
             </Grid>
             <Grid item>
@@ -58,7 +58,7 @@ export default function Dashboard(props) {
             </Grid>
             <Grid item>
               <CategoryCard />
-            </Grid>
+            </Grid> */}
           </Grid>
         </Grid>
         <Grid item sm={5}>
