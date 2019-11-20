@@ -6,8 +6,12 @@
     "@material-ui/core": "^4.5.0",
     "@material-ui/icons": "^4.4.3",
     "classnames": "^2.2.6",
+<<<<<<< Updated upstream
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
+=======
+    "firebase": "^7.4.0",
+>>>>>>> Stashed changes
     "node-sass": "^4.12.0",
     "path": "^0.12.7",
     "prop-types": "^15.7.2",
