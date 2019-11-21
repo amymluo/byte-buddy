@@ -8,9 +8,11 @@ const avatarImgs = {
 };
 
 export default function Avatar(props) {
+  const level = Math.min(props.level, 2);
+
   const useStyles = makeStyles(theme => ({
     buddy: {
-      backgroundImage: `url(${avatarImgs[props.level]})`,
+      backgroundImage: `url(${avatarImgs[level]})`,
       width: "250px",
       height: "330px",
       margin: "auto"

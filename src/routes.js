@@ -9,7 +9,7 @@ import PracticeProblem from "./components/practiceProblem/PracticeProblem";
 import PartsShop from "./components/shop/PartsShop";
 import { userData } from "./data/user";
 import { completedDailyChallenge } from "./data/dailyChallenge";
-import { PROBLEM_INFO } from './constants/problems';
+import { PROBLEM_INFO } from "./constants/problems";
 
 const Routes = props => {
   const [userInfo, setUserInfo] = useState(userData);
@@ -24,7 +24,8 @@ const Routes = props => {
         points: userInfo.points - 1,
         buddy: { ...buddy, points: buddy.points + 1 }
       });
-    }
+      return true;
+    } else return false;
   };
 
   const setProblemSolved = id => {
@@ -32,11 +33,8 @@ const Routes = props => {
       return p.id == id;
     });
     prob.isSolved = true;
-    setProblemData(
-      problemData
-    )
-    
-  }
+    setProblemData(problemData);
+  };
 
   const canBuy = amount => {
     return amount <= userInfo.points;
@@ -112,7 +110,11 @@ const Routes = props => {
             exact
             path="/practiceList"
             render={() => (
-              <Practice userInfo={userInfo} feedPoints={feedPoints} problemData={problemData} />
+              <Practice
+                userInfo={userInfo}
+                feedPoints={feedPoints}
+                problemData={problemData}
+              />
             )}
           />
           <Route
