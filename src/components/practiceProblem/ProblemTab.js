@@ -1,14 +1,11 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import Navbar from "../navbar/Navbar";
-import { makeStyles } from "@material-ui/core/styles";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 
 import Typography from "@material-ui/core/Typography";
-import { PROBLEMS } from "../../constants/problems";
 
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -24,13 +21,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
 // Problem Tab Container
 export default class ProblemTab extends React.Component {
-constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
-      isModalOpen: false,
+      isModalOpen: false
     };
   }
 
@@ -48,10 +44,12 @@ constructor(props) {
 
   render() {
     const { problem, problemId } = this.props;
-    const problemInfo = this.getPracticeProblem(problemId, this.props.problemData);
+    const problemInfo = this.getPracticeProblem(
+      problemId,
+      this.props.problemData
+    );
 
     return (
-
       <div className={"problem-tab"}>
         <p>{problem.problemStatement}</p>
 
@@ -75,14 +73,19 @@ constructor(props) {
 
         <TextField
           className={"code_box"}
-          helperText={"There's no need to put actual code here since this is out of scope for this class."}
+          helperText={
+            "There's no need to put actual code here since this is out of scope for this class."
+          }
           multiline={true}
           rows={10}
           rowsMax={10}
         />
 
         <div className={"button_box"}>
-            <Button variant="contained" onClick={() => this.toggleModalState(true)}>
+          <Button
+            variant="contained"
+            onClick={() => this.toggleModalState(true)}
+          >
             Submit
           </Button>
           <Button>
@@ -103,10 +106,10 @@ constructor(props) {
           <DialogTitle id="alert-dialog-slide-title">Congrats</DialogTitle>
           <DialogContent style={{ width: "300px" }}>
             <Grid container direction="column" alignItems="center" spacing={2}>
-            <Grid item>
-            <p>You solved the {problem.name} problem</p>
-            </Grid>
-        
+              <Grid item>
+                <p>You solved the {problem.name} problem</p>
+              </Grid>
+
               <Grid item>
                 <div className={"item-price"}>
                   <img src={"/assets/purple_hex.png"} alt="hex points" />
@@ -119,18 +122,16 @@ constructor(props) {
             <Button
               onClick={() => {
                 this.toggleModalState(false);
-                
-                
+
                 if (!problemInfo.isSolved) {
                   this.props.addPoints(this.props.points);
                 }
                 this.props.setProblemSolved(problemId);
-                }}
+              }}
               color="primary"
             >
               OK
             </Button>
-        
           </DialogActions>
         </Dialog>
       </div>

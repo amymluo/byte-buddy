@@ -9,7 +9,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import Button from "@material-ui/core/Button";
-import { Snackbar, SnackbarContent } from "@material-ui/core";
+import { Snackbar } from "@material-ui/core";
 
 //Transition for dialog on button click
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -42,8 +42,8 @@ export default class PartsItem extends React.Component {
   handleSnackClose = () => {
     this.setState({
       isSnackOpen: false
-    })
-  }
+    });
+  };
   render() {
     const { canBuy, buyItem } = this.props;
     const { canAfford } = this.state;
@@ -141,7 +141,11 @@ export default class PartsItem extends React.Component {
           open={this.state.isSnackOpen}
           autoHideDuration={500}
           onClose={this.handleSnackClose}
-          message={<span id="message-id">Successfully purchased {this.props.name}</span>}
+          message={
+            <span id="message-id">
+              Successfully purchased {this.props.name}
+            </span>
+          }
         >
           {/* <SnackbarContent
             message={}

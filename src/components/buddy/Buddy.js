@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import LevelPoints from "./LevelPoints";
+import { Link } from "react-router-dom";
 import "./Buddy.scss";
 import {
   Grid,
@@ -85,8 +86,11 @@ export default function Buddy(props) {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            You have no points to feed your Buddy. Try solving more practice
-            problems to earn more points.
+            You have no points to feed your Buddy. Try solving more{" "}
+            <Link to="/practice" style={{ color: "#6D15DC" }}>
+              Practice Problems
+            </Link>{" "}
+            to earn more points.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

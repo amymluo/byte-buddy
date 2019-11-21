@@ -9,15 +9,6 @@ import Buddy from "../buddy/Buddy";
 
 // Parts Shop Container
 export default class PartsShop extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: {},
-      pets: [],
-      listings: []
-    };
-  }
-
   render() {
     const { canBuy, buyItem } = this.props;
     return (
@@ -48,13 +39,14 @@ export default class PartsShop extends React.Component {
               className={"listing"}
               spacing={4}
             >
-              {items.map(item => {
+              {Object.keys(items).map(key => {
                 return (
-                  <Grid item>
+                  <Grid item key={key}>
                     <PartsItem
-                      img={item.img}
-                      name={item.name}
-                      price={item.price}
+                      img={items[key].img}
+                      name={items[key].name}
+                      value={key}
+                      price={items[key].price}
                       canBuy={canBuy}
                       buyItem={buyItem}
                     />

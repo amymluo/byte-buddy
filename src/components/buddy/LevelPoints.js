@@ -20,9 +20,7 @@ export default class LevelPoints extends React.Component {
         <Grid container direction="column">
           <Grid item container xs={12} justify="space-between">
             <Grid item>
-              <Typography variant="caption" color="white">
-                Lvl {level}
-              </Typography>
+              <Typography variant="caption">Lvl {level}</Typography>
             </Grid>
             <Grid item>
               <Typography variant="caption"> {points} / 50</Typography>
