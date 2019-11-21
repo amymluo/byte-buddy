@@ -1,9 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import stamp from "./img/stamp.png";
+import stamp from "./img/stamp.svg";
 import unfilledStamp from "./img/stamp_empty.png";
-import completeStamp from "./img/stamp_complete.gif";
 import clsx from "clsx";
+import Typography from "@material-ui/core/Typography";
 
 import "./DailyChallenge.scss";
 import {
@@ -43,7 +43,6 @@ export default function DailyChallenge(props) {
   const [modalOpened, setModalState] = React.useState(false);
   // const [userHasCompleted, setCompleted] = React.useState(props.isCompleted);
   const userHasCompleted = props.isCompleted.isCompleted;
-
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -130,6 +129,13 @@ export default function DailyChallenge(props) {
             </RadioGroup>
           </div>
 
+          {userHasCompleted && (
+            <Typography varient="body2" fontSize={20}ontWeight="fontWeightMedium">
+              The correct answer was Stack! Remember to come back tomorrow for a
+              new question
+            </Typography>
+          )}
+
           <Button
             disabled={userHasCompleted}
             variant="contained"
@@ -138,7 +144,6 @@ export default function DailyChallenge(props) {
           >
             {userHasCompleted ? "Challenge Completed" : "Submit"}
           </Button>
-
           <Modal
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"
@@ -153,13 +158,17 @@ export default function DailyChallenge(props) {
               </h2>
               <p id="simple-modal-description">
                 {/* Pull an explanation of answer here */}
-                Depth first search should use a stack because it requires a LIFO (last in first out) structure.
+                Depth first search should use a stack because it requires a LIFO
+                (last in first out) structure.
               </p>
+              <h3 id="simple-modal-title">
+                Your weekly streak! Good work so far
+              </h3>
               <div className="popup_stamps">
                 <img src={stamp} />
                 <img src={stamp} />
                 <img src={stamp} />
-                <img src={completeStamp} />
+                <img src={stamp} />
                 <img src={unfilledStamp} />
                 <img src={unfilledStamp} />
               </div>
