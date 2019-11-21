@@ -4,16 +4,30 @@ import "./CategoryCard.scss";
 import { Card, CardContent, LinearProgress, Fab } from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
+import { Redirect } from 'react-router-dom';
+
 export default class CategoryCard extends React.Component {
   state = {
     title: "Algorithms",
     numCompleted: 2,
-    numChallenges: 4
+    numChallenges: 4,
+    toPlace: false
   };
 
+  handleChange = () => {
+    this.setState({
+      toPlace: true
+    })
+  }
+
   render() {
+
     const { title, numChallenges, numCompleted } = this.state;
     const percentCompleted = (numCompleted / numChallenges) * 100;
+    if (this.state.toPlace === true) {
+      return(<Redirect to={'/practiceList?category=' + title}/>);
+    }
+
     return (
       <Card className={"category-card"}>
         <CardContent className={"category-card-content"}>
@@ -29,7 +43,7 @@ export default class CategoryCard extends React.Component {
               aria-label="go"
               style={{ marginTop: "-30px" }}
               onClick={() => {
-        window.location.href = "/practiceList?category=" + title ;
+         this.handleChange();
     }}
             >
               <ArrowForwardIosIcon/>

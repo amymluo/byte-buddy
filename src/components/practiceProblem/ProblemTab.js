@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 
 import Typography from "@material-ui/core/Typography";
+import { PROBLEMS } from "../../constants/problems";
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -29,7 +30,7 @@ export default class ProblemTab extends React.Component {
 constructor(props) {
     super(props);
     this.state = {
-      isModalOpen: false
+      isModalOpen: false,
     };
   }
 
@@ -39,10 +40,16 @@ constructor(props) {
     });
   };
 
-
+  getPracticeProblem(id, problems) {
+    return problems.find(p => {
+      return p.id == id;
+    });
+  }
 
   render() {
-    const { problem } = this.props;
+    const { problem, problemId } = this.props;
+    const problemInfo = this.getPracticeProblem(problemId, this.props.problemData);
+
     return (
 
       <div className={"problem-tab"}>
@@ -68,6 +75,7 @@ constructor(props) {
 
         <TextField
           className={"code_box"}
+          helperText={"There's no need to put actual code here since this is out of scope for this class."}
           multiline={true}
           rows={10}
           rowsMax={10}
@@ -111,7 +119,12 @@ constructor(props) {
             <Button
               onClick={() => {
                 this.toggleModalState(false);
-                this.props.addPoints(this.props.points);
+                
+                
+                if (!problemInfo.isSolved) {
+                  this.props.addPoints(this.props.points);
+                }
+                this.props.setProblemSolved(problemId);
                 }}
               color="primary"
             >

@@ -9,6 +9,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import Button from "@material-ui/core/Button";
+import { Snackbar, SnackbarContent } from "@material-ui/core";
 
 //Transition for dialog on button click
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -21,7 +22,8 @@ export default class PartsItem extends React.Component {
     super(props);
     this.state = {
       isModalOpen: false,
-      canAfford: false
+      canAfford: false,
+      isSnackOpen: false
     };
   }
 
@@ -34,9 +36,14 @@ export default class PartsItem extends React.Component {
   canNotAfford = () => {
     this.setState({
       canAfford: true
+    });
+  };
+
+  handleSnackClose = () => {
+    this.setState({
+      isSnackOpen: false
     })
   }
-
   render() {
     const { canBuy, buyItem } = this.props;
     const { canAfford } = this.state;
@@ -98,7 +105,11 @@ export default class PartsItem extends React.Component {
                   <Typography varient="body2">{this.props.price}</Typography>
                 </div>
               </Grid>
-              { canAfford && <Typography className={"warning"} varient="body2">Sorry, you dont have enough points to buy this item.</Typography>}
+              {canAfford && (
+                <Typography className={"warning"} varient="body2">
+                  Sorry, you dont have enough points to buy this item.
+                </Typography>
+              )}
             </Grid>
           </DialogContent>
           <DialogActions>
@@ -112,9 +123,9 @@ export default class PartsItem extends React.Component {
               onClick={() => {
                 if (canBuy(this.props.price)) {
                   this.toggleModalState(false);
+                  this.setState({ isSnackOpen: true });
                   buyItem(this.props.price);
-                }
-                else {
+                } else {
                   this.canNotAfford();
                 }
               }}
@@ -125,6 +136,17 @@ export default class PartsItem extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
+        <Snackbar
+          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+          open={this.state.isSnackOpen}
+          autoHideDuration={500}
+          onClose={this.handleSnackClose}
+          message={<span id="message-id">Successfully purchased {this.props.name}</span>}
+        >
+          {/* <SnackbarContent
+            message={}
+            /> */}
+        </Snackbar>
       </div>
     );
   }
