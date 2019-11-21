@@ -84,6 +84,7 @@ export default class ProblemTab extends React.Component {
         <div className={"button_box"}>
           <Button
             variant="contained"
+            color="secondary"
             onClick={() => this.toggleModalState(true)}
           >
             Submit

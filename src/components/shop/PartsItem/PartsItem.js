@@ -124,7 +124,7 @@ export default class PartsItem extends React.Component {
                 if (canBuy(this.props.price)) {
                   this.toggleModalState(false);
                   this.setState({ isSnackOpen: true });
-                  buyItem(this.props.price);
+                  buyItem(this.props.price, this.props.value);
                 } else {
                   this.canNotAfford();
                 }
@@ -146,11 +146,7 @@ export default class PartsItem extends React.Component {
               Successfully purchased {this.props.name}
             </span>
           }
-        >
-          {/* <SnackbarContent
-            message={}
-            /> */}
-        </Snackbar>
+        ></Snackbar>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import LevelPoints from "./LevelPoints";
 import { Link } from "react-router-dom";
+import Accessories from "./Accessories";
 import "./Buddy.scss";
 import {
   Grid,
@@ -11,7 +12,8 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
-  Button
+  Button,
+  Popper
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import IconButton from "@material-ui/core/IconButton";
@@ -21,6 +23,7 @@ import cx from "classnames";
 export default function Buddy(props) {
   const { buddyInfo, feedPoints, minimized } = props;
   const [hasNoPoints, setNoPoints] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
   const level = Math.floor(buddyInfo.points / 50) + 1;
   const points = buddyInfo.points % 50;
 
@@ -34,6 +37,13 @@ export default function Buddy(props) {
   const handleClose = () => {
     setNoPoints(false);
   };
+
+  const handleMenuClick = event => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "items-menu" : undefined;
 
   return (
     <div className={cx("buddy-container", { minimized })}>
@@ -67,9 +77,23 @@ export default function Buddy(props) {
               </Tooltip>
             </Grid>
             <Grid item className={cx({ "no-menu": minimized })}>
-              <Fab color="secondary" aria-label="menu">
-                <MenuIcon />
-              </Fab>
+              <Tooltip title="Accessories">
+                <Fab
+                  color="secondary"
+                  aria-label="menu"
+                  onClick={handleMenuClick}
+                >
+                  <MenuIcon />
+                </Fab>
+              </Tooltip>
+              <Popper
+                id={id}
+                open={open}
+                anchorEl={anchorEl}
+                placement="left-start"
+              >
+                <Accessories buddyInfo={buddyInfo} />
+              </Popper>
             </Grid>
           </Grid>
         </Grid>

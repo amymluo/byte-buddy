@@ -40,10 +40,12 @@ const Routes = props => {
     return amount <= userInfo.points;
   };
 
-  const buyItem = amount => {
+  const buyItem = (amount, itemKey) => {
+    const { buddy } = userInfo;
     setUserInfo({
       ...userInfo,
-      points: userInfo.points - amount
+      points: userInfo.points - amount,
+      buddy: { ...buddy, accessories: [...buddy.accessories, itemKey] }
     });
   };
 
