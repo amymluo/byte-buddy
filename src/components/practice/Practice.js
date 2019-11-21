@@ -6,8 +6,6 @@ import FilterBox from "./FilterBox";
 import TextField from "@material-ui/core/TextField";
 import Search from "@material-ui/icons/Search";
 
-import { PROBLEM_INFO } from "../../constants/problems";
-
 import "./Practice.scss";
 import Buddy from "../buddy/Buddy";
 
@@ -52,7 +50,7 @@ export default class Practice extends React.Component {
     super(props);
     this.state = {
       category: getUrlParameter("category"),
-      questions: PROBLEM_INFO
+      questions: props.problemData
     };
 
   }
@@ -114,6 +112,7 @@ export default class Practice extends React.Component {
     // const input = InputWithIcon();
     const input = null;
     const { category } = this.state;
+
     return (
       <div className={"practice"}>
         <Navbar activeTab={"practice"} userInfo={this.props.userInfo} />

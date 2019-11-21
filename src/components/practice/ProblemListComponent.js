@@ -8,13 +8,37 @@ import { Redirect } from 'react-router-dom';
 import "./ProblemListComponent.scss";
 
 
-export default function ProblemListComponent(props) {
-  const solveButton = props.isSolved ? "outlined" : "contained";
-  const solveButtonClass = props.isSolved
+export default class ProblemListComponent extends React.Component {
+
+  state = {
+    toPlace: false
+  };
+
+  handleChange = () => {
+    this.setState({
+      toPlace: true
+    })
+  }
+
+
+  render() {
+  
+    
+  const solveButton = this.props.isSolved ? "outlined" : "contained";
+  const solveButtonClass = this.props.isSolved
     ? "buttonSolved"
     : "classes.buttonUnsolved";
 
-  const isShown = props.isShown;
+  const buttonMessage = this.props.isSolved ? "Solved" : "Solve";
+
+  const isShown = this.props.isShown;
+
+  if (this.state.toPlace === true) {
+    let go = "/problem?problem=" + this.props.id + "&category=" + this.props.category;
+      return(<Redirect to={go}/>);
+  }
+
+  
 
 
 
@@ -24,12 +48,12 @@ export default function ProblemListComponent(props) {
         <Grid container spacing={1} className={"align"}>
           <Grid item xs={12} sm={5}>
             <p className={"paper"} color={"black"}>
-              {props.name}
+              {this.props.name}
             </p>
           </Grid>
           <Grid item xs={12} sm={3}>
             <p className={"paper"} style={{ color: "grey" }}>
-              {props.difficulty}
+              {this.props.difficulty}
             </p>
           </Grid>
           <Grid item xs={12} sm={2}>
@@ -41,7 +65,7 @@ export default function ProblemListComponent(props) {
                 width={20}
               />
               <p className={"paper"} color={"black"}>
-                {props.points}
+                {this.props.points}
               </p>
             </div>
           </Grid>
@@ -51,14 +75,15 @@ export default function ProblemListComponent(props) {
               color="primary"
               className={solveButtonClass}
               onClick={() => {
-        window.location.href = "/problem?problem=" + props.id + "&category=" + props.category ;
+        this.handleChange();
     }}
             >
-              SOLVE
+              {buttonMessage}
             </Button>
           </Grid>
         </Grid>
       )}
     </div>
   );
+}
 }

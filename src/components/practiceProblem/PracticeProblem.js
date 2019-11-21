@@ -9,10 +9,24 @@ import ProblemTab from "./ProblemTab";
 import HintTab from "./HintTab";
 import SolutionsTab from "./SolutionsTab";
 import Buddy from "../buddy/Buddy";
-import { PROBLEMS, PROBLEM_INFO } from "../../constants/problems";
+import { PROBLEMS } from "../../constants/problems";
 import "./PracticeProblem.scss";
 
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Typography from "@material-ui/core/Typography";
+import Button from '@material-ui/core/Button';
+import Slide from "@material-ui/core/Slide";
+import { Redirect } from 'react-router-dom';
+
+//Transition for dialog on button click
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 
 const getUrlParameter = name => {
   name = name.replace(/[[]/, "\\[").replace(/[\]]/, "\\]");
@@ -37,8 +51,22 @@ export default class PracticeProblem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTabIndex: 0
+      activeTabIndex: 0,
+      isWarningModalOpen: false,
+      toPlace: false
     };
+  }
+
+  handleLocationChange = () => {
+    this.setState({
+      toPlace: true
+    })
+  }
+
+  toggleWarningModalState = setToBool => {
+    this.setState({
+      isWarningModalOpen: setToBool
+    });
   }
 
   getPracticeProblem(id) {
@@ -47,8 +75,8 @@ export default class PracticeProblem extends React.Component {
     });
   }
 
-  getPracticeProblemDifficult(id) {
-    return PROBLEM_INFO.find(p => {
+  getPracticeProblemDifficult(id, problems) {
+    return problems.find(p => {
       return p.id == id;
     });
   }
@@ -58,15 +86,20 @@ export default class PracticeProblem extends React.Component {
   };
 
   render() {
+    console.log('here: ' + this.props.problemData);
     const problemId = getUrlParameter("problem");
     const category = getUrlParameter("category");
     const problem = this.getPracticeProblem(problemId);
-    const problemDifficulty = this.getPracticeProblemDifficult(problemId);
+    const problemDifficulty = this.getPracticeProblemDifficult(problemId, this.props.problemData);
     const value = this.state.activeTabIndex;
-    const problemTabView = <ProblemTab problem={problem} points={problemDifficulty.points} addPoints={this.props.addPoints}/>;
+    const problemTabView = <ProblemTab problem={problem} problemId={problemId} points={problemDifficulty.points} addPoints={this.props.addPoints} problemData={this.props.problemData} setProblemSolved={this.props.setProblemSolved}/>;
     const hintTabView = <HintTab problemId={problemId} />;
     const solutionTabView = <SolutionsTab problemId={problemId}/>;
 
+  if (this.state.toPlace === true) {
+    let go = "/practiceList?category=" + category;
+      return(<Redirect to={"/practiceList"}/>);
+  }
     return (
       <div className={"practice-problem"}>
         <Navbar activeTab={"practice"} userInfo={this.props.userInfo} />
@@ -81,9 +114,7 @@ export default class PracticeProblem extends React.Component {
       >
 
           <Grid item md={8} lg={8}>
-          <div className="backButton" onClick={() => {
-        window.location.href = "/practiceList?category=" + category ;
-    }}>
+          <div className="backButton" onClick={() => this.toggleWarningModalState(true)}>
           <ArrowBackIosIcon /> Back
     </div>
                     <h1 className={"header-style"}>{problem.name}</h1>
@@ -126,6 +157,45 @@ export default class PracticeProblem extends React.Component {
           </Grid>
 
         </Grid>
+
+
+
+        <Dialog
+          className={"shop-item-dialog"}
+          open={this.state.isWarningModalOpen}
+          TransitionComponent={Transition}
+          keepMounted
+          onClose={() => this.toggleWarningModalState(false)}
+          aria-labelledby="alert-dialog-slide-title"
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle id="alert-dialog-slide-title">Are you sure you want to go back?</DialogTitle>
+          <DialogContent style={{ width: "300px" }}>
+            <Grid container direction="column" alignItems="center" spacing={2}>
+            <Grid item>
+            <p>If you go back, all of your work won't be saved.</p>
+            </Grid>
+        
+            </Grid>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => {
+                this.toggleWarningModalState(false);
+                }}
+              color="primary"
+            >
+              Cancel
+            </Button>
+
+            <Button onClick={() => {
+        this.handleLocationChange();
+    }}>
+    OK
+    </Button>
+        
+          </DialogActions>
+        </Dialog>
       </div>
     );
   }
