@@ -37,7 +37,7 @@ export default function Navbar(props) {
           <Link to="/dashboard">DASHBOARD</Link>
         </Grid>
         <Grid item className={props.activeTab === "practice" ? "active" : null}>
-          <Link to="/practice">PRACTICE</Link>
+          <Link to="/practice">PROBLEMS</Link>
         </Grid>
         <Grid item className={props.activeTab === "shop" ? "active" : null}>
           <Link to="/shop">PARTS SHOP</Link>

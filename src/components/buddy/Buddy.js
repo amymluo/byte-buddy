@@ -70,7 +70,7 @@ export default function Buddy(props) {
             justify="flex-end"
           >
             <Grid item>
-              <Tooltip title="Feed Buddy">
+              <Tooltip title="Upgrade Buddy">
                 <IconButton style={{ padding: 0 }} onClick={feedBuddyPoints}>
                   <img src="assets/purple_hex.png" alt="hex" width="48px" />
                 </IconButton>

@@ -1,8 +1,6 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Navbar from "../navbar/Navbar";
-import TextField from "@material-ui/core/TextField";
-import Search from "@material-ui/icons/Search";
 
 import "./Practice.scss";
 import CategoryCard from "../practice/categories/CategoryCard";
@@ -25,48 +23,30 @@ export default class Practice extends React.Component {
             container
             item
             direction={"row"}
-            alignItems="center"
+            alignItems="flex-start"
             spacing={2}
-            md={8}
+            md={7}
           >
-            <Grid item>
-              <h1 style={{ color: "#6D15DC" }}>Practice</h1>
-            </Grid>
+            <Grid container item spacing={2}>
+              <Grid item>
+                <h1 style={{ color: "#6D15DC" }}>Practice</h1>
+              </Grid>
 
-            <Grid item xs={12}>
-              <h2 className="header">POPULAR TOPICS</h2>
-            </Grid>
-            <Grid container item spacing={3} direction="row" xs={12}>
-              {/* <Grid item>
-                <CategoryCard />
+              <Grid item xs={12}>
+                <h2 className="header">POPULAR TOPICS</h2>
               </Grid>
-              <Grid item>
-                <CategoryCard />
+              <Grid container item spacing={3} direction="row" xs={12}>
+                <Grid item>
+                  <CategoryCard />
+                </Grid>
               </Grid>
-              <Grid item>
-                <CategoryCard />
-              </Grid> */}
-              <Grid item>
-                <CategoryCard />
-              </Grid>
-            </Grid>
-            <Grid item xs={12}>
-              {/* <h2 className="header">LANGUAGES</h2>
-            </Grid>
-            <Grid container item spacing={3} direction="row" xs={12}>
-              <Grid item>
-                <CategoryCard />
-              </Grid>
-              <Grid item>
-                <CategoryCard />
-              </Grid> */}
             </Grid>
           </Grid>
-          <Grid item md={4}>
+          <Grid item md={5}>
             <Buddy
               buddyInfo={this.props.userInfo.buddy}
               feedPoints={this.props.feedPoints}
-              minimized={true}
+              minimized={false}
             />
           </Grid>
         </Grid>

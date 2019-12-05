@@ -130,7 +130,7 @@ export default class Practice extends React.Component {
             spacing={6}
             style={{ width: "100%" }}
           >
-            <Grid item md={8} lg={8}>
+            <Grid item md={7} lg={7}>
               <Grid container direction={"row"} alignItems="center">
                 <h3 style={{ marginRight: "50px" }}>{category}</h3>
                 {input}
@@ -140,7 +140,7 @@ export default class Practice extends React.Component {
                 problems={this.state.questions}
               />
             </Grid>
-            <Grid item md={4}>
+            <Grid item md={5}>
               <Buddy
                 buddyInfo={this.props.userInfo.buddy}
                 feedPoints={this.props.feedPoints}
@@ -158,12 +158,6 @@ export default class Practice extends React.Component {
                 title={difficultyTitile}
                 callbackFromParent={this.myCallback}
               />
-              {/* <hr />
-            <FilterBox
-              values={topics}
-              title={topicsTitle}
-              callbackFromParent={this.myCallback}
-            /> */}
             </Grid>
           </Grid>
         </Grid>

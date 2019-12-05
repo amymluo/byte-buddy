@@ -1,19 +1,21 @@
 .practice-problem {
 
   .content {
-    padding: 48px 60px;
+    padding: 24px 8px;
+    margin: 0;
+    width: 100%;
   }
 
   .header {
     margin-top: 30px
   }
-} 
+}
 
 .backButton {
-      display: flex;
-    align-items: center;
-    color: #6D15DC;
-    margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  color: #6D15DC;
+  margin-bottom: 30px;
 }
 
 .header-style {
@@ -28,9 +30,9 @@
 }
 
 .info-box-header {
-    margin-right: 20px;
-    color: gray;
-    font-size: 18px;
+  margin-right: 20px;
+  color: gray;
+  font-size: 18px;
 }
 
 .bold {
@@ -40,11 +42,10 @@
 .sample_box {
   p {
     font-family: courier new
-
   }
+
   background: #e8e7e8;
   padding: 10px
-
 }
 
 .practice_navbar {

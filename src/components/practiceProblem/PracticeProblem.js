@@ -121,7 +121,7 @@ export default class PracticeProblem extends React.Component {
           spacing={6}
           justify={"space-between"}
         >
-          <Grid item md={8} lg={8}>
+          <Grid item md={7} lg={7}>
             <div
               className="backButton"
               onClick={() => this.toggleWarningModalState(true)}
@@ -147,7 +147,7 @@ export default class PracticeProblem extends React.Component {
             <TabPanel value={value} index={1} view={hintTabView} />
             <TabPanel value={value} index={2} view={solutionTabView} />
           </Grid>
-          <Grid item md={4}>
+          <Grid item md={5}>
             <Buddy
               buddyInfo={this.props.userInfo.buddy}
               feedPoints={this.props.feedPoints}

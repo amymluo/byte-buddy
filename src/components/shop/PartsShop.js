@@ -27,7 +27,7 @@ export default class PartsShop extends React.Component {
             direction={"row"}
             alignItems="center"
             spacing={2}
-            md={8}
+            md={7}
           >
             <Grid item>
               <h1 style={{ color: "#6D15DC" }}>Parts Shop</h1>
@@ -55,7 +55,7 @@ export default class PartsShop extends React.Component {
               })}
             </Grid>
           </Grid>
-          <Grid item md={4}>
+          <Grid item md={5}>
             <Buddy
               buddyInfo={this.props.userInfo.buddy}
               feedPoints={this.props.feedPoints}
