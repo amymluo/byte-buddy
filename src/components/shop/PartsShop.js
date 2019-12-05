@@ -59,7 +59,7 @@ export default class PartsShop extends React.Component {
             <Buddy
               buddyInfo={this.props.userInfo.buddy}
               feedPoints={this.props.feedPoints}
-              minimized={true}
+              minimized={false}
             />
           </Grid>
         </Grid>

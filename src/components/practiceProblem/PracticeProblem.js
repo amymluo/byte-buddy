@@ -151,7 +151,7 @@ export default class PracticeProblem extends React.Component {
             <Buddy
               buddyInfo={this.props.userInfo.buddy}
               feedPoints={this.props.feedPoints}
-              minimized={true}
+              minimized={false}
             />
             <div className="info-box">
               <p className={"info-box-header"}>DIFFICULTY</p>

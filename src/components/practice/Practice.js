@@ -52,7 +52,6 @@ export default class Practice extends React.Component {
       category: getUrlParameter("category"),
       questions: props.problemData
     };
-
   }
 
   myCallback = dataFromChild => {
@@ -117,57 +116,58 @@ export default class Practice extends React.Component {
       <div className={"practice"}>
         <Navbar activeTab={"practice"} userInfo={this.props.userInfo} />
         <Grid
-        container
-        direction={"row"}
-        className={"content"}
-        spacing={6}
-        justify={"space-between"}
-      >
-
-        <h1 style={{paddingLeft: "24px", color: "#6d15dc"}}>Practice</h1>
-        <Grid
           container
           direction={"row"}
           className={"content"}
           spacing={6}
-          style={{ width: "100%" }}
+          justify={"space-between"}
         >
-          <Grid item md={8} lg={8}>
-            <Grid container direction={"row"} alignItems="center">
-              <h3 style={{ marginRight: "50px" }}>{category}</h3>
-              {input}
+          <h1 style={{ paddingLeft: "24px", color: "#6d15dc" }}>Practice</h1>
+          <Grid
+            container
+            direction={"row"}
+            className={"content"}
+            spacing={6}
+            style={{ width: "100%" }}
+          >
+            <Grid item md={8} lg={8}>
+              <Grid container direction={"row"} alignItems="center">
+                <h3 style={{ marginRight: "50px" }}>{category}</h3>
+                {input}
+              </Grid>
+              <PracticeList
+                category={category}
+                problems={this.state.questions}
+              />
             </Grid>
-            <PracticeList category={category} problems={this.state.questions} />
-          </Grid>
-          <Grid item md={4}>
-            <Buddy
-              buddyInfo={this.props.userInfo.buddy}
-              feedPoints={this.props.feedPoints}
-              minimized={true}
-            />
-            <h2 style={{ marginLeft: "24px" }}>Filter</h2>
-            <FilterBox
-              values={isSolved}
-              title={isSolvedTitle}
-              callbackFromParent={this.myCallback}
-            />
-            <hr />
-            <FilterBox
-              values={difficulty}
-              title={difficultyTitile}
-              callbackFromParent={this.myCallback}
-            />
-            {/* <hr />
+            <Grid item md={4}>
+              <Buddy
+                buddyInfo={this.props.userInfo.buddy}
+                feedPoints={this.props.feedPoints}
+                minimized={false}
+              />
+              <h2 style={{ marginLeft: "24px" }}>Filter</h2>
+              <FilterBox
+                values={isSolved}
+                title={isSolvedTitle}
+                callbackFromParent={this.myCallback}
+              />
+              <hr />
+              <FilterBox
+                values={difficulty}
+                title={difficultyTitile}
+                callbackFromParent={this.myCallback}
+              />
+              {/* <hr />
             <FilterBox
               values={topics}
               title={topicsTitle}
               callbackFromParent={this.myCallback}
             /> */}
+            </Grid>
           </Grid>
         </Grid>
-        </Grid>
       </div>
-
     );
   }
 }
